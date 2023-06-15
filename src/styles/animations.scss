@@ -1,0 +1,19 @@
+@keyframes background-hover {
+  from {
+    background-color: rgba(0, 0, 0, 0.2);
+  }
+
+  to {
+    background-color: rgba(0, 0, 0, 0.7);
+  }
+}
+
+@keyframes background-out {
+    from {
+      background-color: rgba(0, 0, 0, 0.7);
+    }
+  
+    to {
+      background-color: rgba(0, 0, 0, 0.2);
+    }
+  }

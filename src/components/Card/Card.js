@@ -1,14 +1,15 @@
-import glacier from "../../assets/images/Glacier.jpg"
-import "./Card.scss"
+import "./Card.scss";
 
 const Card = ({ data }) => {
-
+  console.log();
   return (
     <article className="card">
+        <div className="card__contrast">
+          <h2 className="card__heading">{data.name}</h2>
+          <button className="card__btn">Show me the forecast</button>
+        </div>
       <div className="card__background">
-        <img src={glacier} alt="glacier" className="card__img" />
-        <h2 className="card__heading">{data.owner.value}</h2>
-        <button className="card__btn">Show me the forecast</button>
+        <img src={data.img} alt="glacier" className="card__img" />
       </div>
     </article>
   );

@@ -16,16 +16,27 @@ const HomePage = () => {
   if (isError) {
     return <span>Error: {error.message}</span>;
   }
-
+  console.log(data);
   return (
     <main className="home">
       <section className="carousel">
-        <Carousel maw={'90%'} mx="auto" withIndicators height={200} draggable={true}>
-          <Carousel.Slide>
-            <Card data={data}/>
-          </Carousel.Slide>
-          <Carousel.Slide>2</Carousel.Slide>
-          <Carousel.Slide>3</Carousel.Slide>
+        <Carousel
+          maw={"90%"}
+          mx="auto"
+          withIndicators
+          height={300}
+          draggable={true}
+          slideSize={'50%'}
+          align={"start"}
+          slideGap={"xl"}
+        >
+          {data.map((mountain) => {
+            return (
+              <Carousel.Slide key={mountain.id}>
+                <Card data={mountain} />
+              </Carousel.Slide>
+            );
+          })}
         </Carousel>
       </section>
     </main>
