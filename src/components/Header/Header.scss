@@ -1,0 +1,54 @@
+@use "../../styles/mixins.scss" as *;
+
+.header {
+  @include flex(space-between, center);
+  padding: 2rem 1rem;
+  margin: 0 auto;
+
+  &__logo {
+    font-family: Roboto Mono;
+    font-size: 12px;
+    font-weight: 400;
+    color: whitesmoke;
+  }
+  &__nav {
+    @include flex();
+  }
+  &__link {
+    padding: 0.25rem;
+    font-size: 12px;
+    position: relative;
+
+    &.active {
+      background-color: #555555;
+      border-bottom-right-radius: 2px;
+      border-bottom-left-radius: 2px;
+      &::before {
+        content: "";
+        top: -22px;
+        left: 0px;
+        position: absolute;
+        border-top-width: 10px;
+        border-bottom-width: 12px;
+        border-left-width: 15px;
+        border-right-width: 15px;
+        border-style: solid;
+        border-color: transparent transparent whitesmoke;
+       
+      }
+      &::after {
+        content: "";
+        top: -20px;
+        left: 10px;
+        position: absolute;
+        border-top-width: 10px;
+        border-bottom-width: 10px;
+        border-left-width: 13px;
+        border-right-width: 13px;
+        border-style: solid;
+        border-color: transparent transparent #666666;
+        
+      }
+    }
+  }
+}

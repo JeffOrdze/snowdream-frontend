@@ -23,7 +23,7 @@ const Signup = () => {
         e.target.reset();
 
         setTimeout(() => {
-          navigate("/");
+          navigate("/login");
         }, 1000);
       })
       .catch((error) => {
@@ -34,7 +34,7 @@ const Signup = () => {
   return (
     <main className="main">
       <form className="signup" onSubmit={submitHandler}>
-        <h1 className="signup__title">Sign up</h1>
+        <h2 className="signup__title">Sign up</h2>
 
         <Input type="text" name="name" label="Name" />
         <Input type="text" name="email" label="Email" />

@@ -6,6 +6,7 @@ import { useNavigate, Link } from "react-router-dom";
 
 function Login() {
   const [error, setError] = useState("");
+  const [success, setSuccess] = useState("")
   const navigate = useNavigate();
 
   const handleSubmit = (event) => {
@@ -18,7 +19,10 @@ function Login() {
       })
       .then((response) => {
         sessionStorage.setItem("token", response.data.token);
-        navigate("/");
+        setSuccess("Successfully logged in!")
+        setTimeout(()=> {
+            navigate("/");
+       }, 2000)
       })
       .catch((error) => {
         setError(error.response.data.message);
@@ -28,13 +32,14 @@ function Login() {
   return (
     <main className="login-page">
       <form className="login" onSubmit={handleSubmit}>
-        <h1 className="login__title">Log in</h1>
+        <h2 className="login__title">Log in</h2>
 
         <Input type="text" name="email" label="Email" />
         <Input type="password" name="password" label="Password" />
 
         <button className="login__button">Log in</button>
 
+        { success && <div className="login__message">{success}</div> }
         {error && <div className="login__message">{error}</div>}
       </form>
       <p>
