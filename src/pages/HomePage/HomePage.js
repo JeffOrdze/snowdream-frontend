@@ -1,7 +1,11 @@
 import { useQuery } from "@tanstack/react-query";
 import { useState } from "react";
 import { Carousel } from "@mantine/carousel";
-import { fetchMountainList, fetchUser } from "../../utils/utils";
+import {
+  fetchMountainList,
+  fetchUser,
+  fetchLikedMountains,
+} from "../../utils/utils";
 import Card from "../../components/Card/Card";
 import "./Home.scss";
 
@@ -10,32 +14,45 @@ const HomePage = () => {
   const [user, setUser] = useState(null);
 
   const {
-    isLoading,
-    isError,
+    isLoading: avIsLoad,
+    isError: avIsError,
     data: avData,
-    error,
+    error: avError,
   } = useQuery({
     queryKey: ["mountains"],
     queryFn: fetchMountainList,
   });
 
-  const { isError: userError, error: usersError } = useQuery({
+  const {
+    isError: userError,
+    isLoading: userLoad,
+    error: usersError,
+    data: userName,
+  } = useQuery({
     queryKey: ["users"],
     queryFn: () => fetchUser(setFailedAuth, setUser),
   });
 
-  if (isLoading) {
+  const userId = userName?.id;
+
+  const { data: userData } = useQuery({
+    queryKey: ["userLikes"],
+    queryFn: () => fetchLikedMountains(userId),
+    enabled: !!userId,
+  });
+
+  if (avIsLoad) {
     return <span>Loading...</span>;
   }
 
-  if (userError) {
+  if (avIsError) {
     return <span>Error: {usersError.message}</span>;
   }
 
   return (
     <main className="home main">
+        <h2 className="section-title">All Mountains</h2>
       <section className="carousel">
-      <h2 className="carousel__title">All Mountains</h2>
         <Carousel
           maw={"100%"}
           mx="auto"
@@ -55,13 +72,17 @@ const HomePage = () => {
           })}
         </Carousel>
       </section>
+        <h2 className="section-title">Your Mountains</h2>
       <section className="carousel">
-        <h2 className="carousel__title">My Mountains</h2>
         <div
           className={
-            user ? "carousel__overlay--user carousel__overlay" : "carousel__overlay--no-user carousel__overlay"}>
+            user
+              ? "carousel__overlay--user carousel__overlay"
+              : "carousel__overlay--no-user carousel__overlay"
+          }
+        >
           <p className="carousel__prompt">Please login to view your carousel</p>
-          </div>
+        </div>
         <Carousel
           maw={"100%"}
           mx="auto"
@@ -71,15 +92,15 @@ const HomePage = () => {
           slideSize={"50%"}
           align={"start"}
           slideGap={"xl"}
-          >
-             {avData.map((mountain) => {
+        >
+          {userData?.map((mountain) => {
             return (
               <Carousel.Slide key={mountain.id}>
                 <Card data={mountain} />
               </Carousel.Slide>
             );
           })}
-          </Carousel>
+        </Carousel>
       </section>
     </main>
   );

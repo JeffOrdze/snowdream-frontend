@@ -30,4 +30,16 @@ const fetchUser = async (setFailedAuth, setUser) => {
   }
 };
 
-export { fetchMountainList, fetchUser };
+const fetchLikedMountains = async (userId) => {
+
+  try { 
+   const response = await axios.get("http://localhost:8080/users/mountains", {
+    params: { id: userId },
+  }) 
+  return response.data
+  } catch (error) { 
+    console.log(error)
+  }
+ 
+};
+export { fetchMountainList, fetchUser, fetchLikedMountains };
