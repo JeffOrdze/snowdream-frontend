@@ -8,13 +8,16 @@ import "./Modal.scss";
 const Modal = ({ modalState, setModalState, mountainInfo }) => {
   const { name, lat, long } = mountainInfo;
 
-  const { data } = useQuery({
+  const { data, isLoading } = useQuery({
     queryKey: ["users"],
     queryFn: () => fetchInfo(lat, long),
     enabled: modalState,
   });
 
-  console.log(modalState);
+  if (isLoading) {
+    return <span>Loading...</span>;
+  }
+
   if (data) {
     const { confidence, dangerRatings, highlights } = data[0].data;
     const weatherData = data[1].data;
@@ -76,21 +79,36 @@ const Modal = ({ modalState, setModalState, mountainInfo }) => {
                         <div className="weather__section" key={index}>
                           <h3 className="modal__subheading">{day.dt}</h3>
                           <p className="weather__p">
-                            Temperature: <span className="weather__figure">{day.main.temp}</span>
+                            Temperature:{" "}
+                            <span className="weather__figure">
+                              {day.main.temp}
+                            </span>
                           </p>
                           <p className="weather__p">
-                            Feels like: <span className="weather__figure">{day.main.feels_like}</span>
+                            Feels like:{" "}
+                            <span className="weather__figure">
+                              {day.main.feels_like}
+                            </span>
                           </p>
                           <p className="weather__p">
-                            Chance of Preciptiation: <span className="weather__figure">{day.pop}</span>
+                            Chance of Preciptiation:{" "}
+                            <span className="weather__figure">{day.pop}</span>
                           </p>
                         </div>
                         <div className="weather__section">
-                            <h3 className="modal__subheading">Current Conditions</h3>
-                            <img src="" alt="weather icon" className="weather__icon" />
-                            <p className="weather__p">{day.weather[0].main}</p>
-                            <p className="weather__p">Wind: {day.wind.speed}m/s </p>
-                            <p className="weather__p">Wind Gust: {day.wind.gust} m/s</p>
+                          <h3 className="modal__subheading">Conditions</h3>
+                          <img
+                            src={`https://openweathermap.org/img/wn/${day.weather[0].icon}@2x.png`}
+                            alt="weather icon"
+                            className="weather__icon"
+                          />
+                          <p className="weather__p">{day.weather[0].main}</p>
+                          <p className="weather__p">
+                            Wind: {day.wind.speed}m/s{" "}
+                          </p>
+                          <p className="weather__p">
+                            Wind Gust: {day.wind.gust} m/s
+                          </p>
                         </div>
                       </>
                     );
