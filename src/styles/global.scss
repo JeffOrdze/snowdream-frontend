@@ -1,5 +1,5 @@
 body {
-  font-family: "Roboto", sans-serif;
+  font-family: "Roboto Mono", sans-serif;
   background: linear-gradient(
     to bottom,
     #181818,
@@ -32,4 +32,15 @@ a {
 
 .main { 
   margin: 0 1rem;
+}
+
+.section-title { 
+  text-align: center;
+  color: whitesmoke;
+  font-weight: 400;
+  margin-bottom: 1rem;
+  margin-right: 0.7rem;
+  padding: 0.5rem;
+  border: 1px solid #555555;
+  border-radius: 5px;
 }

@@ -1,27 +1,28 @@
-import { closeHandler } from "../../utils/handlers";
 import parse from "html-react-parser";
+import { closeHandler } from "../../utils/handlers";
 import { useQuery } from "@tanstack/react-query";
 import { fetchInfo } from "../../utils/api";
 import exit from "../../assets/images/close-24px.svg";
 import "./Modal.scss";
 
+const timestamp = require("unix-timestamp");
+
 const Modal = ({ modalState, setModalState, mountainInfo }) => {
   const { name, lat, long } = mountainInfo;
 
   const { data, isLoading } = useQuery({
-    queryKey: ["users"],
+    queryKey: ["info"],
     queryFn: () => fetchInfo(lat, long),
     enabled: modalState,
   });
 
-  if (isLoading) {
+  if (modalState === true && isLoading) {
     return <span>Loading...</span>;
   }
 
   if (data) {
     const { confidence, dangerRatings, highlights } = data[0].data;
     const weatherData = data[1].data;
-    console.log(weatherData);
     return (
       <>
         {modalState === true ? (
@@ -50,7 +51,7 @@ const Modal = ({ modalState, setModalState, mountainInfo }) => {
                     {dangerRatings.map((rating, index) => {
                       return (
                         <div className="avalanche__danger" key={index}>
-                          <h4 className="avalanche__subheading">
+                          <h4 className="modal__subheading">
                             {rating.date.display}
                           </h4>
                           <p className="avalanche__p">
@@ -67,7 +68,7 @@ const Modal = ({ modalState, setModalState, mountainInfo }) => {
                     })}
                   </div>
                   <div className="avalanche__section">
-                    <h3 className="avalanche__heading">Summaries:</h3>
+                    <h3 className="modal__heading">Summaries:</h3>
                     {parse(highlights)}
                   </div>
                 </section>
@@ -77,37 +78,45 @@ const Modal = ({ modalState, setModalState, mountainInfo }) => {
                     return (
                       <>
                         <div className="weather__section" key={index}>
-                          <h3 className="modal__subheading">{day.dt}</h3>
-                          <p className="weather__p">
-                            Temperature:{" "}
-                            <span className="weather__figure">
-                              {day.main.temp}
-                            </span>
-                          </p>
-                          <p className="weather__p">
-                            Feels like:{" "}
-                            <span className="weather__figure">
-                              {day.main.feels_like}
-                            </span>
-                          </p>
-                          <p className="weather__p">
-                            Chance of Preciptiation:{" "}
-                            <span className="weather__figure">{day.pop}</span>
-                          </p>
+                          <h3 className="modal__subheading">
+                            {timestamp.toDate(day.dt).toLocaleString()}
+                          </h3>
+                          <div className="weather__card">
+                            <img
+                              src={`https://openweathermap.org/img/wn/${day.weather[0].icon}@2x.png`}
+                              alt="weather icon"
+                              className="weather__icon"
+                            />
+                            <div className="weather__card-text">
+                              <p className="weather__p">
+                                Temperature:{" "}
+                                <span className="weather__figure">
+                                  {day.main.temp}°C
+                                </span>
+                              </p>
+                              <p className="weather__p">
+                                Feels like:{" "}
+                                <span className="weather__figure">
+                                  {day.main.feels_like}°C
+                                </span>
+                              </p>
+                              <p className="weather__p">
+                                Chance of Preciptiation:{" "}
+                                <span className="weather__figure">
+                                  {day.pop * 100}%
+                                </span>
+                              </p>
+                            </div>
+                          </div>
                         </div>
                         <div className="weather__section">
                           <h3 className="modal__subheading">Conditions</h3>
-                          <img
-                            src={`https://openweathermap.org/img/wn/${day.weather[0].icon}@2x.png`}
-                            alt="weather icon"
-                            className="weather__icon"
-                          />
                           <p className="weather__p">{day.weather[0].main}</p>
                           <p className="weather__p">
-                            Wind: {day.wind.speed}m/s{" "}
+                            Wind: {Math.floor(day.wind.speed * 3.6)} km/h{" "}
                           </p>
                           <p className="weather__p">
-                            Wind Gust: {day.wind.gust} m/s
+                            Wind Gust: {Math.floor(day.wind.gust * 3.6)} km/h
                           </p>
                         </div>
                       </>

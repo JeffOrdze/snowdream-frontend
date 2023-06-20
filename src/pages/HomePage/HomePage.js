@@ -1,19 +1,13 @@
 import { useQuery } from "@tanstack/react-query";
-import { useState } from "react";
 import { Carousel } from "@mantine/carousel";
-import {
-  fetchMountainList,
-  fetchUser,
-  fetchLikedMountains,
+import {fetchMountainList,fetchUser,fetchLikedMountains,
 } from "../../utils/api";
 import Modal from "../../components/Modal/Modal";
 import Card from "../../components/Card/Card";
 import "./Home.scss";
 
-const HomePage = () => {
-  const [user, setUser] = useState(null);
-  const [showModal, setShowModal] = useState(false);
-  const [mountainInfo, setMountainInfo] = useState([]);
+const HomePage = ({user, setUser, showModal, setShowModal, mountainInfo, setMountainInfo}) => {
+
 
   const {
     isLoading: avIsLoad,
@@ -48,6 +42,7 @@ const HomePage = () => {
     return <span>Error: {avError.message}</span>;
   }
 
+ 
   return (
     <main className="home main">
       <Modal
@@ -55,7 +50,7 @@ const HomePage = () => {
         setModalState={setShowModal}
         mountainInfo={mountainInfo}
       />
-      <h2 className="section-title">All Mountains</h2>
+      <h2 className="section-title">All Backcountry Areas</h2>
       <section className="carousel">
         <Carousel
           maw={"100%"}
@@ -66,6 +61,7 @@ const HomePage = () => {
           slideSize={"50%"}
           align={"start"}
           slideGap={"xl"}
+          breakpoints={[{ maxWidth: 'sm', slideSize: '100%'}]}
         >
           {avData.map((mountain) => {
             return (
@@ -74,13 +70,15 @@ const HomePage = () => {
                   data={mountain}
                   setModalState={setShowModal}
                   setMountainInfo={setMountainInfo}
+                  userId={userId}
+                  altStyle={""}
                 />
               </Carousel.Slide>
             );
           })}
         </Carousel>
       </section>
-      <h2 className="section-title">Your Mountains</h2>
+      <h2 className="section-title">Your Areas</h2>
       <section className="carousel">
         <div
           className={
@@ -100,11 +98,16 @@ const HomePage = () => {
           slideSize={"50%"}
           align={"start"}
           slideGap={"xl"}
+          breakpoints={[{ maxWidth: 'sm', slideSize: '100%'}]}
         >
           {userData?.map((mountain) => {
             return (
               <Carousel.Slide key={mountain.id}>
-                <Card data={mountain} />
+                <Card  data={mountain}
+                  setModalState={setShowModal}
+                  setMountainInfo={setMountainInfo}
+                  userId={userId}
+                  altStyle={""} />
               </Carousel.Slide>
             );
           })}

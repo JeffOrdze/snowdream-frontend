@@ -1,13 +1,13 @@
 @use "../../styles/mixins.scss" as *;
-@use"../../styles/animations.scss" as *;
+@use "../../styles/animations.scss" as *;
 
 .card {
   position: relative;
   width: 100%;
   height: 100%;
-  &__contrast { 
-    @include flex(center,center,column);
-    gap:1rem;
+  &__contrast {
+    @include flex(space-between, center, column);
+    padding: 2rem 0;
     width: 100%;
     height: 100%;
     background-color: rgba(0, 0, 0, 0.2);
@@ -17,18 +17,39 @@
     color: white;
     animation: background-out 1s forwards linear;
     &:hover {
-      animation: background-hover 1s forwards linear
+      animation: background-hover 1s forwards linear;
     }
+  }
+  &__heading {
+    font-weight: 400;
+    text-align: center;
+    height: 60px;
   }
   &__background {
     width: 100%;
     height: 100%;
-    @include flex(center, center);
   }
   &__img {
     width: 100%;
     height: 100%;
     object-fit: cover;
     border-radius: 5px;
+  }
+  &__btn-container {
+    @include flex(center, center, column);
+    gap: 0.5rem;
+  }
+  &__btn {
+    font-family: Roboto Mono, sans-serif;
+    width: 200px;
+    padding: 0.5rem;
+    border-radius: 20px;
+    background-color: whitesmoke;
+    box-shadow: rgb(204, 219, 232) 3px 3px 6px 0px inset,
+      rgba(255, 255, 255, 0.5) -3px -3px 6px 1px inset;
+    &:hover {
+      box-shadow: rgba(255, 255, 255, 0.5) 3px 3px 6px 0px inset,
+        rgb(204, 219, 232) -3px -3px 6px 1px inset;
+    }
   }
 }

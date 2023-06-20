@@ -1,4 +1,5 @@
 import axios from "axios";
+
 //Get list of all mountains
 const fetchMountainList = async () => {
   try {

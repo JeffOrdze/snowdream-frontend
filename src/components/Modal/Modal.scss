@@ -53,19 +53,48 @@
       margin: 0 3rem;
     }
   }
-  &__heading {
-    padding-bottom: 1rem;
+  &__title {
+    margin-bottom: 0.5rem;
   }
-  &__btns {
-    @include flex(flex-end);
-    gap: 1rem;
+}
 
-    @include tablet {
-      margin-right: 2rem;
-    }
+.avalanche { 
+  @include flex (normal, normal, column);
+  gap: 0.5rem;
+  padding-bottom: 1rem;
+  margin-bottom: 1rem;
+  border-bottom: 1px solid gray;
+  &__section { 
+    @include flex (normal, normal, column);
+    gap: 0.5rem;
+    font-size: 14px;
   }
-  &__confirmation {
-    color: red;
+}
+
+.weather { 
+  @include flex (normal, normal, column);
+  gap: 0.5rem;
+  padding-bottom: 1rem;
+  margin-bottom: 1rem;
+  border-bottom: 1px solid gray;
+  &__card { 
+    @include flex ();
+    gap: 0.5rem;
+    font-size: 14px;
+    border: 1px solid gray
+  }
+  &__card-text { 
+    @include flex(space-between,normal, column);
+    padding: 0.2rem
+    
+  }
+  &__section { 
+    @include flex (normal, normal, column);
+    gap: 0.5rem;
+    font-size: 14px;
+  }
+  &__icon { 
+    width: 75px;
   }
 }
 
