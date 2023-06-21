@@ -8,6 +8,10 @@
   left: 0;
   background-color: rgba(19, 24, 44, 0.9);
   z-index: 100;
+
+  @include tablet {
+    overflow: scroll;
+  }
 }
 
 .modal {
@@ -31,16 +35,19 @@
   }
 
   @include tablet {
-    width: 85%;
+    width: 75%;
     height: auto;
-    top: 20%;
+    top: 5%;
     left: 50%;
     transform: translateX(-50%);
-    padding: 1rem 1rem 2rem 1rem;
+    padding: 2rem;
   }
 
   @include desktop {
-    width: 50%;
+    width: 80%;
+    max-width: 90rem;
+    top: 10%;
+    padding: 1rem 3rem;
   }
   &__container {
     @include flex(normal, normal, column);
@@ -58,42 +65,60 @@
   }
 }
 
-.avalanche { 
-  @include flex (normal, normal, column);
+.avalanche {
+  @include flex(normal, normal, column);
   gap: 0.5rem;
   padding-bottom: 1rem;
   margin-bottom: 1rem;
   border-bottom: 1px solid gray;
-  &__section { 
-    @include flex (normal, normal, column);
+  &__section {
+    @include flex(normal, normal, column);
     gap: 0.5rem;
     font-size: 14px;
+  }
+  &__danger-container {
+    @include flex(normal, normal, column);
+    gap: 0.5rem;
+
+    @include desktop {
+      @include flex(space-between);
+      gap: 0;
+    }
   }
 }
 
-.weather { 
-  @include flex (normal, normal, column);
+.weather {
+  @include flex(normal, normal, column);
   gap: 0.5rem;
   padding-bottom: 1rem;
   margin-bottom: 1rem;
   border-bottom: 1px solid gray;
-  &__card { 
-    @include flex ();
+
+  &__container {
+    @include desktop {
+      @include flex(space-between);
+      gap: 0.5rem;
+    }
+  }
+  &__card {
+    @include flex();
     gap: 0.5rem;
     font-size: 14px;
-    border: 1px solid gray
+    border: 1px solid gray;
+    @include desktop {
+      padding: 0.5rem 1rem;
+    }
   }
-  &__card-text { 
-    @include flex(space-between,normal, column);
-    padding: 0.2rem
-    
+  &__card-text {
+    @include flex(space-between, normal, column);
+    padding: 0.2rem;
   }
-  &__section { 
-    @include flex (normal, normal, column);
+  &__section {
+    @include flex(normal, normal, column);
     gap: 0.5rem;
     font-size: 14px;
   }
-  &__icon { 
+  &__icon {
     width: 75px;
   }
 }

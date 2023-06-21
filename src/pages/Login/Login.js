@@ -37,7 +37,7 @@ function Login() {
         <Input type="text" name="email" label="Email" />
         <Input type="password" name="password" label="Password" />
 
-        <button className="login__button">Log in</button>
+        <button className="login__button button">Log in</button>
 
         { success && <div className="login__message">{success}</div> }
         {error && <div className="login__message">{error}</div>}

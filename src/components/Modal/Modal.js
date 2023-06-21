@@ -49,6 +49,7 @@ const Modal = ({ modalState, setModalState, mountainInfo }) => {
                   </div>
                   <div className="avalanche__section">
                     <h3 className="modal__heading">Danger Rating</h3>
+                    <div className="avalanche__danger-container">
                     {dangerRatings.map((rating, index) => {
                       return (
                         <div className="avalanche__danger" key={index}>
@@ -67,6 +68,7 @@ const Modal = ({ modalState, setModalState, mountainInfo }) => {
                         </div>
                       );
                     })}
+                    </div>
                   </div>
                   <div className="avalanche__section">
                     <h3 className="modal__heading">Summaries:</h3>
@@ -75,9 +77,9 @@ const Modal = ({ modalState, setModalState, mountainInfo }) => {
                 </section>
                 <section className="weather">
                   <h2 className="modal__title">Weather</h2>
+                  <div className="weather__container">
                   {weatherData.map((day, index) => {
                     return (
-                      <>
                         <div className="weather__section" key={index}>
                           <h3 className="modal__subheading">
                             {timestamp.toDate(day.dt).toLocaleString()}
@@ -109,7 +111,6 @@ const Modal = ({ modalState, setModalState, mountainInfo }) => {
                               </p>
                             </div>
                           </div>
-                        </div>
                         <div className="weather__section">
                           <h3 className="modal__subheading">Conditions</h3>
                           <p className="weather__p">{day.weather[0].main}</p>
@@ -120,9 +121,10 @@ const Modal = ({ modalState, setModalState, mountainInfo }) => {
                             Wind Gust: {Math.floor(day.wind.gust * 3.6)} km/h
                           </p>
                         </div>
-                      </>
+                        </div>
                     );
                   })}
+                  </div>
                 </section>
               </div>
             </article>

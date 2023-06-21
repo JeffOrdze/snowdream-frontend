@@ -1,4 +1,13 @@
+@use "./mixins.scss" as *;
+
+#root { 
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
 body {
+  min-height: 100vh;
   font-family: "Roboto Mono", sans-serif;
   background: linear-gradient(
     to bottom,
@@ -28,14 +37,25 @@ body {
 a { 
   text-decoration: none;
   color: whitesmoke;
+  cursor: pointer;
 }
 
 .mantine-1v3yzoy, .mantine-1jkjqkp {
   border-radius: 0;
 }
 
-
 .main { 
-  margin: 0 1rem;
+  max-width: 120rem;
+  margin: 0 auto;
 }
 
+.content-block { 
+  margin: 0 1rem;
+
+  @include tablet { 
+    margin: 0 1.5rem;
+  }
+  @include desktop { 
+    margin: 0 3rem;
+  }
+}

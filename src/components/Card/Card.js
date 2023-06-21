@@ -52,12 +52,13 @@ const Card = ({
           >
             <path d="m80-120 400-720 400 720H80Zm102-60h268v-482L182-180Zm328 0h268L510-662v482Z" />
           </svg>
-        <p className="card__wind section_heading">{Math.floor(mountainData[1].data[0].wind.speed * 3.6)}km/h</p>
+          <p className="card__temp section-heading">{Math.floor(mountainData[1].data[0].main.temp)}°C</p>
           <img
             src={`https://openweathermap.org/img/wn/${mountainData[1].data[0].weather[0].icon}@2x.png`}
             alt=""
             className="card__icon"
           />
+        <p className="card__wind section-heading">{Math.floor(mountainData[1].data[0].wind.speed * 3.6)} KM/H</p>
         </div>
         <div className="card__btn-container">
           <button

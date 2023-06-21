@@ -13,7 +13,6 @@
     background-color: rgba(0, 0, 0, 0.2);
     position: absolute;
     z-index: 2;
-    // border-radius: 5px;
     color: white;
     animation: background-out 1s forwards linear;
     &:hover {
@@ -40,7 +39,7 @@
   }
   &__btn {
     font-family: Roboto Mono, sans-serif;
-    width: 200px;
+    width: 16.25rem;
     padding: 0.5rem;
     background-color: whitesmoke;
     box-shadow: rgb(204, 219, 232) 3px 3px 6px 0px inset,
@@ -54,19 +53,23 @@
     height: 400px;
   }
   &__icon-container {
-    @include flex(center, center);
-    gap: 0.5rem;
-    width: 50%;
-    background-color: #555555d2;
+    @include flex(space-between, center);
+    background-color: rgba(245, 245, 245, 0.7);
+    padding: 0.5rem;
+    width: 16.25rem;
+    height: 4.6875rem;
   }
   &__icon {
-    width: 75px;
+    width: 4.375rem;
     &--danger {
+      width: 2.5rem;
       fill: #245eac;
     }
   }
-  &__wind { 
-    width: 50px;
-    color: white;
+  &__wind {
+    color: black;
+  }
+  &__temp { 
+    color: black;
   }
 }

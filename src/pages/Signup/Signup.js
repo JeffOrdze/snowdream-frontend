@@ -32,7 +32,7 @@ const Signup = () => {
       });
   };
   return (
-    <main className="main">
+    <main className="main signup-main">
       <form className="signup" onSubmit={submitHandler}>
         <h2 className="signup__title">Sign up</h2>
 
@@ -40,12 +40,15 @@ const Signup = () => {
         <Input type="text" name="email" label="Email" />
         <Input type="password" name="password" label="Password" />
 
-        <button className="signup__button">Sign up</button>
+        <button className="signup__button button">Sign up</button>
         {success && <div className="signup__message">Signed up!</div>}
         {error && <div className="signup__message">{error}</div>}
       </form>
       <p className="signup__login">
-        Have an account? <Link to="/login">Log in</Link>
+        Have an account?{" "}
+        <Link className="signup__link" to="/login">
+          Log in
+        </Link>
       </p>
     </main>
   );

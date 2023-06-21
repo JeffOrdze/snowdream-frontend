@@ -4,12 +4,18 @@
   @include flex(normal, center);
   gap: 0.5rem;
   width: 100%;
-  border-radius: 5px;
   background-color: whitesmoke;
   border: 1px solid #555555;
   height: 40px;
   padding: 0 0.5rem;
   margin-bottom: 0.5rem;
+
+  @include tablet { 
+    width: 49%;
+  }
+  @include desktop { 
+    width: 24%;
+  }
   &__icon {
     width: 20px;
   }

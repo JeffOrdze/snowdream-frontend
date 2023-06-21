@@ -3,7 +3,6 @@
 .header {
   @include flex(space-between, center);
   padding: 1.5rem 1rem;
-  margin: 0 auto;
 
   &__logo {
     font-size: 16px;

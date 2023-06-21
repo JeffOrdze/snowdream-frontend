@@ -64,26 +64,28 @@ const Locations = ({
   }
 
   return (
-    <main className="main">
+    <main className="main main-locations">
       <Modal
         modalState={showModal}
         setModalState={setShowModal}
         mountainInfo={mountainInfo}
       />
-      <section className="locations">
+      <div className="content-block">
         <Search searchHandler={searchHandler} />
-        {filteredData.map((mountain) => (
-          <Card
-            key={mountain.id}
-            data={mountain}
-            setModalState={setShowModal}
-            setMountainInfo={setMountainInfo}
-            altStyle={"card--locations"}
-            userId={userId}
-            userFavorites={userFavorites}
-          />
-        ))}
-      </section>
+        <section className="locations">
+          {filteredData.map((mountain) => (
+            <Card
+              key={mountain.id}
+              data={mountain}
+              setModalState={setShowModal}
+              setMountainInfo={setMountainInfo}
+              altStyle={"card--locations"}
+              userId={userId}
+              userFavorites={userFavorites}
+            />
+          ))}
+        </section>
+      </div>
     </main>
   );
 };

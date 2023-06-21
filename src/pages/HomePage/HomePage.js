@@ -50,6 +50,7 @@ const HomePage = ({user, setUser, showModal, setShowModal, mountainInfo, setMoun
         mountainInfo={mountainInfo}
       />
       <Hero/>
+      <div className="content-block">
       <h2 className="home__title section-heading">All Backcountry Areas</h2>
       <section className="carousel">
         <Carousel
@@ -58,10 +59,14 @@ const HomePage = ({user, setUser, showModal, setShowModal, mountainInfo, setMoun
           withIndicators
           height={400}
           draggable={true}
-          slideSize={"50%"}
+          slideSize={"25%"}
           align={"start"}
           slideGap={"xl"}
-          breakpoints={[{ maxWidth: 'sm', slideSize: '100%'}]}
+          breakpoints={[
+            { maxWidth: 'sm', slideSize: '100%'},
+            {maxWidth: 'md', slideSize: "50%"},
+            {maxWidth: '120rem', slideSize: "33%"}
+          ]}
           dragFree
         >
           {avData.map((mountain) => {
@@ -96,10 +101,14 @@ const HomePage = ({user, setUser, showModal, setShowModal, mountainInfo, setMoun
           withIndicators
           height={400}
           draggable={true}
-          slideSize={"50%"}
+          slideSize={"25%"}
           align={"start"}
           slideGap={"xl"}
-          breakpoints={[{ maxWidth: 'sm', slideSize: '100%'}]}
+          breakpoints={[
+            { maxWidth: 'sm', slideSize: '100%'},
+            {maxWidth: 'md', slideSize: "50%"},
+            {maxWidth: '120rem', slideSize: "33%"}
+          ]}
           dragFree
         >
           {userFavorites?.map((mountain) => {
@@ -115,6 +124,7 @@ const HomePage = ({user, setUser, showModal, setShowModal, mountainInfo, setMoun
           })}
         </Carousel>
       </section>
+      </div>
     </main>
   );
 };
