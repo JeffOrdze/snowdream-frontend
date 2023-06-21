@@ -9,15 +9,12 @@ import {
 import "./Locations.scss";
 
 const Locations = ({
-  user,
   setUser,
   showModal,
   setShowModal,
   mountainInfo,
   setMountainInfo,
-  index
 }) => {
-    
   const {
     isLoading: avIsLoad,
     isError: avIsError,
@@ -35,12 +32,11 @@ const Locations = ({
 
   const userId = userName?.id;
 
-  const { data: userData } = useQuery({
+  const { data: userFavorites } = useQuery({
     queryKey: ["userLikes"],
     queryFn: () => fetchLikedMountains(userId),
     enabled: !!userId,
   });
-
 
   if (avIsLoad) {
     return <span>Loading...</span>;
@@ -57,15 +53,15 @@ const Locations = ({
         setModalState={setShowModal}
         mountainInfo={mountainInfo}
       />
-      {avData.map((mountain, index) => (
+      {avData.map((mountain) => (
         <Card
-        key={mountain.id}
+          key={mountain.id}
           data={mountain}
           setModalState={setShowModal}
           setMountainInfo={setMountainInfo}
           altStyle={"card--locations"}
           userId={userId}
-          userData={userData}
+          userFavorites={userFavorites}
         />
       ))}
     </div>

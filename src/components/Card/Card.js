@@ -1,3 +1,4 @@
+import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { modalHandler, favoriteHandler } from "../../utils/handlers";
 import "./Card.scss";
 
@@ -7,10 +8,22 @@ const Card = ({
   setMountainInfo,
   altStyle,
   userId,
-  userData,
+  userFavorites,
 }) => {
+  const queryClient = useQueryClient();
+
+  const likeArea = useMutation({
+    mutationFn: () => favoriteHandler(data.id, userId),
+    onSuccess: () => {
+      queryClient.invalidateQueries({
+        queryKey: ["userLikes"],
+        refetchQueries: ["userLikes"],
+      });
+    },
+  });
+
   const isFavorited =
-    userData && userData.some((item) => item.name === data.name);
+    userFavorites && userFavorites.some((item) => item.name === data.name);
 
   return (
     <article className={`card ${altStyle}`}>
@@ -24,12 +37,16 @@ const Card = ({
             Show me the forecast
           </button>
           {isFavorited ? (
-            <button disabled className="card__btn"> Already Favorited</button>
+            <button disabled className="card__btn">
+              {" "}
+              Already Favorited
+            </button>
+          ) : !userId ? (
+            <button disabled className="card__btn">
+              Please login
+            </button>
           ) : altStyle !== "" ? (
-            <button
-              className="card__btn"
-              onClick={() => favoriteHandler(data.id, userId)}
-            >
+            <button className="card__btn" onClick={() => likeArea.mutate()}>
               Add to my favorites
             </button>
           ) : null}

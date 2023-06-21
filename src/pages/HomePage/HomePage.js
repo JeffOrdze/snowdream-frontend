@@ -8,6 +8,7 @@ import "./Home.scss";
 
 const HomePage = ({user, setUser, showModal, setShowModal, mountainInfo, setMountainInfo}) => {
 
+  
 
   const {
     isLoading: avIsLoad,
@@ -28,7 +29,7 @@ const HomePage = ({user, setUser, showModal, setShowModal, mountainInfo, setMoun
   const userId = userName?.id;
 
   //Only enable this query if userId exists
-  const { data: userData } = useQuery({
+  const { data: userFavorites } = useQuery({
     queryKey: ["userLikes"],
     queryFn: () => fetchLikedMountains(userId),
     enabled: !!userId,
@@ -42,7 +43,8 @@ const HomePage = ({user, setUser, showModal, setShowModal, mountainInfo, setMoun
     return <span>Error: {avError.message}</span>;
   }
 
- 
+
+
   return (
     <main className="home main">
       <Modal
@@ -100,7 +102,7 @@ const HomePage = ({user, setUser, showModal, setShowModal, mountainInfo, setMoun
           slideGap={"xl"}
           breakpoints={[{ maxWidth: 'sm', slideSize: '100%'}]}
         >
-          {userData?.map((mountain) => {
+          {userFavorites?.map((mountain) => {
             return (
               <Carousel.Slide key={mountain.id}>
                 <Card  data={mountain}

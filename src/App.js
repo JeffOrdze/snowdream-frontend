@@ -1,5 +1,6 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import { ReactQueryDevtools } from '@tanstack/react-query-devtools'
 import { useState } from "react";
 import Header from "./components/Header/Header";
 import Footer from "./components/Footer/Footer";
@@ -12,6 +13,7 @@ import "./styles/global.scss";
 
 const queryClient = new QueryClient();
 function App() {
+
   const [user, setUser] = useState(null);
   const [showModal, setShowModal] = useState(false);
   const [mountainInfo, setMountainInfo] = useState([]);
@@ -19,7 +21,8 @@ function App() {
   return (
     <QueryClientProvider client={queryClient}>
       <BrowserRouter>
-        <Header />
+        <Header user={user} setUser={setUser}/>
+        <ReactQueryDevtools initialIsOpen={false}/>
         <Routes>
           <Route
             path="/"
