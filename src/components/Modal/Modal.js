@@ -2,12 +2,13 @@ import parse from "html-react-parser";
 import { closeHandler } from "../../utils/handlers";
 import { useQuery } from "@tanstack/react-query";
 import { fetchInfo } from "../../utils/api";
-import exit from "../../assets/images/close-24px.svg";
+import exit from "../../assets/images/icons/close-24px.svg";
 import "./Modal.scss";
 
 const timestamp = require("unix-timestamp");
 
 const Modal = ({ modalState, setModalState, mountainInfo }) => {
+  
   const { name, lat, long } = mountainInfo;
 
   const { data, isLoading } = useQuery({

@@ -1,4 +1,4 @@
-import search from "../../assets/images/search.svg";
+import search from "../../assets/images/icons/search.svg";
 import "./Search.scss";
 
 const Search = ({ searchHandler}) => {

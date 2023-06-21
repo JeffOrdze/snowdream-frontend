@@ -9,8 +9,6 @@ import "./Home.scss";
 
 const HomePage = ({user, setUser, showModal, setShowModal, mountainInfo, setMountainInfo}) => {
 
-  
-
   const {
     isLoading: avIsLoad,
     isError: avIsError,
@@ -44,8 +42,6 @@ const HomePage = ({user, setUser, showModal, setShowModal, mountainInfo, setMoun
     return <span>Error: {avError.message}</span>;
   }
 
-
-
   return (
     <main className="home main">
       <Modal
@@ -54,7 +50,7 @@ const HomePage = ({user, setUser, showModal, setShowModal, mountainInfo, setMoun
         mountainInfo={mountainInfo}
       />
       <Hero/>
-      <h2 className="section-title">All Backcountry Areas</h2>
+      <h2 className="home__title section-heading">All Backcountry Areas</h2>
       <section className="carousel">
         <Carousel
           maw={"100%"}
@@ -66,6 +62,7 @@ const HomePage = ({user, setUser, showModal, setShowModal, mountainInfo, setMoun
           align={"start"}
           slideGap={"xl"}
           breakpoints={[{ maxWidth: 'sm', slideSize: '100%'}]}
+          dragFree
         >
           {avData.map((mountain) => {
             return (
@@ -82,7 +79,7 @@ const HomePage = ({user, setUser, showModal, setShowModal, mountainInfo, setMoun
           })}
         </Carousel>
       </section>
-      <h2 className="section-title">Your Areas</h2>
+      <h2 className="home__title section-heading">Your Areas</h2>
       <section className="carousel">
         <div
           className={
@@ -103,6 +100,7 @@ const HomePage = ({user, setUser, showModal, setShowModal, mountainInfo, setMoun
           align={"start"}
           slideGap={"xl"}
           breakpoints={[{ maxWidth: 'sm', slideSize: '100%'}]}
+          dragFree
         >
           {userFavorites?.map((mountain) => {
             return (
