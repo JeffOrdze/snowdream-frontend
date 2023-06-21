@@ -1,0 +1,6 @@
+@use "../../styles/mixins.scss" as *;
+
+.locations { 
+@include flex(normal,normal,column);
+gap: 0.5rem;
+}

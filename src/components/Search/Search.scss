@@ -1,0 +1,27 @@
+@use "../../styles/mixins.scss" as *;
+
+.search {
+  @include flex(normal, center);
+  gap: 0.5rem;
+  width: 100%;
+  border-radius: 5px;
+  background-color: whitesmoke;
+  border: 1px solid #555555;
+  height: 40px;
+  padding: 0 0.5rem;
+  margin-bottom: 0.5rem;
+  &__icon {
+    width: 20px;
+  }
+  &__input {
+    font-family: "Roboto Mono", sans-serif;
+    border: none;
+    height: 100%;
+    width: 100%;
+    padding: 0.2rem;
+    background-color: whitesmoke;
+    &:focus-visible {
+      outline: none;
+    }
+  }
+}

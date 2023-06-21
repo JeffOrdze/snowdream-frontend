@@ -2,6 +2,7 @@ import { useQuery } from "@tanstack/react-query";
 import { Carousel } from "@mantine/carousel";
 import {fetchMountainList,fetchUser,fetchLikedMountains,
 } from "../../utils/api";
+import Hero from "../../components/Hero/Hero";
 import Modal from "../../components/Modal/Modal";
 import Card from "../../components/Card/Card";
 import "./Home.scss";
@@ -52,13 +53,14 @@ const HomePage = ({user, setUser, showModal, setShowModal, mountainInfo, setMoun
         setModalState={setShowModal}
         mountainInfo={mountainInfo}
       />
+      <Hero/>
       <h2 className="section-title">All Backcountry Areas</h2>
       <section className="carousel">
         <Carousel
           maw={"100%"}
           mx="auto"
           withIndicators
-          height={300}
+          height={400}
           draggable={true}
           slideSize={"50%"}
           align={"start"}
@@ -95,7 +97,7 @@ const HomePage = ({user, setUser, showModal, setShowModal, mountainInfo, setMoun
           maw={"100%"}
           mx="auto"
           withIndicators
-          height={300}
+          height={400}
           draggable={true}
           slideSize={"50%"}
           align={"start"}

@@ -1,6 +1,8 @@
+import { useState } from "react";
 import { useQuery } from "@tanstack/react-query";
 import Modal from "../../components/Modal/Modal";
 import Card from "../../components/Card/Card";
+import Search from "../../components/Search/Search";
 import {
   fetchMountainList,
   fetchUser,
@@ -15,6 +17,13 @@ const Locations = ({
   mountainInfo,
   setMountainInfo,
 }) => {
+  const [searchValue, setSearchValue] = useState("");
+
+  const searchHandler = (e) => {
+    const lowerCase = e.target.value.toLowerCase();
+    setSearchValue(lowerCase);
+  };
+
   const {
     isLoading: avIsLoad,
     isError: avIsError,
@@ -38,6 +47,14 @@ const Locations = ({
     enabled: !!userId,
   });
 
+  const filteredData = avData?.filter((mountain) => {
+    if (searchValue === "") {
+      return mountain;
+    } else {
+      return mountain.name.toLowerCase().includes(searchValue);
+    }
+  });
+
   if (avIsLoad) {
     return <span>Loading...</span>;
   }
@@ -47,24 +64,27 @@ const Locations = ({
   }
 
   return (
-    <div>
+    <main className="main">
       <Modal
         modalState={showModal}
         setModalState={setShowModal}
         mountainInfo={mountainInfo}
       />
-      {avData.map((mountain) => (
-        <Card
-          key={mountain.id}
-          data={mountain}
-          setModalState={setShowModal}
-          setMountainInfo={setMountainInfo}
-          altStyle={"card--locations"}
-          userId={userId}
-          userFavorites={userFavorites}
-        />
-      ))}
-    </div>
+      <section className="locations">
+        <Search searchHandler={searchHandler} />
+        {filteredData.map((mountain) => (
+          <Card
+            key={mountain.id}
+            data={mountain}
+            setModalState={setShowModal}
+            setMountainInfo={setMountainInfo}
+            altStyle={"card--locations"}
+            userId={userId}
+            userFavorites={userFavorites}
+          />
+        ))}
+      </section>
+    </main>
   );
 };
 

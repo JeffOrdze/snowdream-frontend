@@ -2,7 +2,7 @@
 
 .header {
   @include flex(space-between, center);
-  padding: 2rem 1rem;
+  padding: 1.5rem 1rem;
   margin: 0 auto;
 
   &__logo {

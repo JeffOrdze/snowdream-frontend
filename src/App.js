@@ -9,6 +9,7 @@ import Locations from "./pages/Locations/Locations";
 import Login from "./pages/Login/Login";
 import Signup from "./pages/Signup/Signup";
 import "./App.scss";
+import "./styles/typography.scss";
 import "./styles/global.scss";
 
 const queryClient = new QueryClient();
