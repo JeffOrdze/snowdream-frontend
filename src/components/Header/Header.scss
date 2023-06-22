@@ -3,6 +3,12 @@
 .header {
   @include flex(space-between, center);
   padding: 1.5rem 1rem;
+  @include tablet { 
+    padding: 1.5rem 2rem;
+  }
+  @media screen and (min-width: 1930px) {
+    padding: 1.5rem 5rem;
+  }
 
   &__logo {
     font-size: 16px;

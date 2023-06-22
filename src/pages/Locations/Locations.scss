@@ -2,13 +2,15 @@
 
 .main-locations {
   flex-grow: 1;
+  width: 100%;
+  height: 100%;
 }
 .locations {
   @include flex(normal, normal, column);
   gap: 0.5rem;
 
   @include tablet { 
-    @include flex(space-between);
+    @include flex(flex-start);
     flex-wrap: wrap;
     row-gap: 1rem;
   }
