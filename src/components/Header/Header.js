@@ -5,7 +5,7 @@ import "./Header.scss";
 const Header = ({ user, setUser }) => {
   return (
     <header className="header">
-      <Link>
+      <Link to={"/"}>
         <h1 className="header__logo">snowDREAM</h1>
       </Link>
       <nav className="header__nav">
