@@ -27,13 +27,6 @@
 
   background-color: whitesmoke;
 
-  & a {
-    color: blue;
-  }
-  & strong {
-    font-weight: 400;
-  }
-
   @include tablet {
     width: 75%;
     height: auto;
@@ -49,6 +42,27 @@
     top: 10%;
     padding: 1rem 3rem;
   }
+
+  & a {
+    color: blue;
+    font-size: 0.875rem;
+    line-height: 1.125rem;
+
+    @include tablet {
+      line-height: 1.375rem;
+    }
+  }
+
+  & strong {
+    font-weight: 400;
+    font-size: 0.875rem;
+    line-height: 1.125rem;
+
+    @include tablet {
+      line-height: 1.375rem;
+    }
+  }
+
   &__container {
     @include flex(normal, normal, column);
   }

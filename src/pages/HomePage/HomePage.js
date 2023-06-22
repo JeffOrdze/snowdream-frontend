@@ -51,7 +51,7 @@ const HomePage = ({user, setUser, showModal, setShowModal, mountainInfo, setMoun
       />
       <Hero/>
       <div className="content-block">
-      <h2 className="home__title section-heading">All Backcountry Areas</h2>
+      <h2 className="home__title sub-heading">All Backcountry Areas</h2>
       <section className="carousel">
         <Carousel
           maw={"100%"}

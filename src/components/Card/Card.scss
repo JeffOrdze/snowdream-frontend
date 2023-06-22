@@ -50,7 +50,7 @@
     }
   }
   &--locations {
-    height: 400px;
+    height: 25rem;
   }
   &__icon-container {
     @include flex(space-between, center);
@@ -69,7 +69,7 @@
   &__wind {
     color: black;
   }
-  &__temp { 
+  &__temp {
     color: black;
   }
 }

@@ -8,7 +8,6 @@ import "./Modal.scss";
 const timestamp = require("unix-timestamp");
 
 const Modal = ({ modalState, setModalState, mountainInfo }) => {
-  
   const { name, lat, long } = mountainInfo;
 
   const { data, isLoading } = useQuery({
@@ -42,44 +41,47 @@ const Modal = ({ modalState, setModalState, mountainInfo }) => {
                 <section className="avalanche">
                   <h2 className="modal__title">Avalanche Data</h2>
                   <div className="avalanche__section">
-                    <h3 className="modal__heading">Confidence</h3>
-                    <p className="avalanche__p">
+                    <h3 className="modal__heading sub-heading">Confidence</h3>
+                    <p className="avalanche__p body">
                       Confidence rating: {confidence.rating.display}
                     </p>
                   </div>
                   <div className="avalanche__section">
-                    <h3 className="modal__heading">Danger Rating</h3>
-                    <div className="avalanche__danger-container">
-                    {dangerRatings.map((rating, index) => {
-                      return (
-                        <div className="avalanche__danger" key={index}>
-                          <h4 className="modal__subheading">
-                            {rating.date.display}
-                          </h4>
-                          <p className="avalanche__p">
-                            Alpine: {rating.ratings.alp.rating.display}
-                          </p>
-                          <p className="avalanche__p">
-                            Below treeline: {rating.ratings.btl.rating.display}
-                          </p>
-                          <p className="avalanche__p">
-                            Treeline: {rating.ratings.tln.rating.display}
-                          </p>
-                        </div>
-                      );
-                    })}
+                    <h3 className="modal__heading sub-heading">
+                      Danger Rating
+                    </h3>
+                    <div className="avalanche__danger-container body">
+                      {dangerRatings.map((rating, index) => {
+                        return (
+                          <div className="avalanche__danger" key={index}>
+                            <h4 className="modal__subheading sub-heading">
+                              {rating.date.display}
+                            </h4>
+                            <p className="avalanche__p">
+                              Alpine: {rating.ratings.alp.rating.display}
+                            </p>
+                            <p className="avalanche__p">
+                              Below treeline:{" "}
+                              {rating.ratings.btl.rating.display}
+                            </p>
+                            <p className="avalanche__p">
+                              Treeline: {rating.ratings.tln.rating.display}
+                            </p>
+                          </div>
+                        );
+                      })}
                     </div>
                   </div>
                   <div className="avalanche__section">
-                    <h3 className="modal__heading">Summaries:</h3>
+                    <h3 className="modal__heading sub-heading">Summaries:</h3>
                     {parse(highlights)}
                   </div>
                 </section>
-                <section className="weather">
-                  <h2 className="modal__title">Weather</h2>
+                <section className="weather body">
+                  <h2 className="modal__title sub-heading">Weather</h2>
                   <div className="weather__container">
-                  {weatherData.map((day, index) => {
-                    return (
+                    {weatherData.map((day, index) => {
+                      return (
                         <div className="weather__section" key={index}>
                           <h3 className="modal__subheading">
                             {timestamp.toDate(day.dt).toLocaleString()}
@@ -91,39 +93,39 @@ const Modal = ({ modalState, setModalState, mountainInfo }) => {
                               className="weather__icon"
                             />
                             <div className="weather__card-text">
-                              <p className="weather__p">
+                              <p className="weather__p body">
                                 Temperature:{" "}
                                 <span className="weather__figure">
                                   {day.main.temp}°C
                                 </span>
                               </p>
-                              <p className="weather__p">
+                              <p className="weather__p body">
                                 Feels like:{" "}
                                 <span className="weather__figure">
                                   {day.main.feels_like}°C
                                 </span>
                               </p>
-                              <p className="weather__p">
+                              <p className="weather__p body">
                                 Chance of Preciptiation:{" "}
                                 <span className="weather__figure">
-                                  {day.pop * 100}%
+                                  {Math.floor(day.pop * 100)}%
                                 </span>
                               </p>
                             </div>
                           </div>
-                        <div className="weather__section">
-                          <h3 className="modal__subheading">Conditions</h3>
-                          <p className="weather__p">{day.weather[0].main}</p>
-                          <p className="weather__p">
-                            Wind: {Math.floor(day.wind.speed * 3.6)} km/h{" "}
-                          </p>
-                          <p className="weather__p">
-                            Wind Gust: {Math.floor(day.wind.gust * 3.6)} km/h
-                          </p>
+                          <div className="weather__section">
+                            <h3 className="modal__subheading">Conditions</h3>
+                            <p className="weather__p body">{day.weather[0].main}</p>
+                            <p className="weather__p body">
+                              Wind: {Math.floor(day.wind.speed * 3.6)} km/h{" "}
+                            </p>
+                            <p className="weather__p body">
+                              Wind Gust: {Math.floor(day.wind.gust * 3.6)} km/h
+                            </p>
+                          </div>
                         </div>
-                        </div>
-                    );
-                  })}
+                      );
+                    })}
                   </div>
                 </section>
               </div>
