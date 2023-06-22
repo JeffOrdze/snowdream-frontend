@@ -40,6 +40,29 @@ const fetchLikedMountains = async (userId) => {
     console.log(error);
   }
 };
+//Add a mountain to users liked list
+const favoriteMountain = async (mountain_id, users_id) => {
+  try {
+    await axios.post("http://localhost:8080/users/mountains", {
+      mountain_id,
+      users_id,
+    });
+  } catch (error) {
+    console.error(error);
+  }
+};
+
+//Remove a mountain from a users liked list
+const removeFavoriteMountain = async (mountain_id, users_id) => { 
+  try {
+    await axios.delete("http://localhost:8080/users/mountains", {
+     data:{ mountain_id,
+      users_id}
+    });
+  } catch (error) {
+    console.error("Hiting catch",error);
+  }
+}
 
 //Get avalanche and weather information for selected mountain
 const fetchInfo = async (lat, long) => {
@@ -86,4 +109,6 @@ export {
   fetchLikedMountains,
   fetchInfo,
   fetchGoogle,
+  favoriteMountain,
+  removeFavoriteMountain
 };

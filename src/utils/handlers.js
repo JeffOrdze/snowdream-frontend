@@ -1,4 +1,3 @@
-import axios from "axios";
 import { googleLogout } from "@react-oauth/google";
 
 const modalHandler = (setModalState, data, setMountainInfo) => {
@@ -16,15 +15,4 @@ const logOutHandler = (setUser) => {
   setUser(null);
 };
 
-const favoriteHandler = async (mountain_id, users_id) => {
-  try {
-    await axios.post("http://localhost:8080/users/mountains", {
-      mountain_id,
-      users_id,
-    });
-  } catch (error) {
-    console.error(error);
-  }
-};
-
-export { modalHandler, closeHandler, favoriteHandler, logOutHandler };
+export { modalHandler, closeHandler, logOutHandler };
