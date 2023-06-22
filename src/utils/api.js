@@ -42,16 +42,48 @@ const fetchLikedMountains = async (userId) => {
 };
 
 //Get avalanche and weather information for selected mountain
-const fetchInfo = async (lat, long) => { 
-  try { 
-const response = Promise.all([
-  axios.get(`http://localhost:8080/avalanche/${lat}/${long}`),
-  axios.get(`http://localhost:8080/weather/${lat}/${long}`)
-])
-return response
-
-  } catch (error) { 
-    console.log(error)
+const fetchInfo = async (lat, long) => {
+  try {
+    const response = Promise.all([
+      axios.get(`http://localhost:8080/avalanche/${lat}/${long}`),
+      axios.get(`http://localhost:8080/weather/${lat}/${long}`),
+    ]);
+    return response;
+  } catch (error) {
+    console.log(error);
   }
-}
-export { fetchMountainList, fetchUser, fetchLikedMountains, fetchInfo };
+};
+
+//Google login
+
+const fetchGoogle = async (googleUser, setSuccess) => {
+  try {
+    const response = await axios.get(
+      `https://www.googleapis.com/oauth2/v1/userinfo?access_token=${googleUser.access_token}`,
+      {
+        headers: {
+          Authorization: `Bearer ${googleUser.access_token}`,
+          Accept: "application/json",
+        },
+      }
+    );
+    const login = await axios.post("http://localhost:8080/users/google", {
+      username: response.data.email,
+      password: response.data.id,
+      name: response.data.name,
+    });
+    sessionStorage.setItem("token", login.data);
+    setSuccess("Successfully Logged in!")
+    return response.data;
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+export {
+  fetchMountainList,
+  fetchUser,
+  fetchLikedMountains,
+  fetchInfo,
+  fetchGoogle,
+};

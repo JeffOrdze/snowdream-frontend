@@ -117,7 +117,8 @@
   &__card {
     @include flex();
     gap: 0.5rem;
-    font-size: 14px;
+    font-size: .875rem;
+    background-color: rgba(128, 128, 128, 0.3);
     border: 1px solid gray;
     @include desktop {
       padding: 0.5rem 1rem;

@@ -1,5 +1,6 @@
 import "./Login.scss";
 import Input from "../../components/Input/Input";
+import GoogleLogin from "../../components/GoogleLogin/GoogleLogin";
 import axios from "axios";
 import { useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
@@ -45,6 +46,7 @@ function Login() {
       <p>
         Need an account? <Link to="/sign-up"className="login__link">Sign up</Link>
       </p>
+      <GoogleLogin setSuccess={setSuccess}/>
     </main>
   );
 }
