@@ -35,7 +35,7 @@ const Card = ({
     userFavorites && userFavorites.some((item) => item.name === data.name);
 
   if (isLoading) {
-    return <span>Content Loading</span>;
+    return <span className="card">Content Loading..</span>;
   }
 
   return (

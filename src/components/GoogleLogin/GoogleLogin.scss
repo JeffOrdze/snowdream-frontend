@@ -1,0 +1,25 @@
+@use "../../styles/mixins.scss" as *;
+@use "../../styles/variables.scss" as *;
+
+.google {
+  &__btn {
+    @include flex(center, center);
+    gap: 1rem;
+    margin-top: 1rem;
+    width: 352px;
+    padding: 1rem 0;
+    background-color: whitesmoke;
+    border: 1px solid #555555;
+    box-shadow: $box-shadow;
+    &:hover {
+      box-shadow: $box-shadow-hover;
+    }
+  }
+  &__icon {
+    height: 40px;
+  }
+  &__photo {
+    height: 40px;
+    border-radius: 50%;
+  }
+}
