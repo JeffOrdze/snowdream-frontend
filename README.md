@@ -1,70 +1,90 @@
-# Getting Started with Create React App
+# snowDream
+snowDream is a web application that provides curated avalanche conditions and weather data for backcountry skiing. It utilizes the Avalanche Canada API for avalanche conditions and the OpenWeather API for weather data. The project aims to help users make informed decisions about their backcountry skiing adventures by providing up-to-date information about various backcountry areas.
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Features
+- Avalanche Conditions: Retrieves avalanche conditions from the Avalanche Canada API, allowing users to access the latest data on avalanche risks and safety.
+- Weather Data: Integrates with the OpenWeather API to display real-time weather information for different backcountry locations.
+- Google Login: Implements Google Login functionality to provide users with a personalized experience and access to additional features.
+- Login with email: A login flow to sign up with your email address, name and given password 
+- bcrypt: All passwords are hashed with bcrypt to ensure privacy
 
-## Available Scripts
+## Tech Stack
+- Frontend: React
+- Backend: Node.js, Express
+- Database: MySQL (using Knex.js for query building)
+- Additional Libraries: 
+1. tanStack useQuery for data fetching and server state management
+2. mantine UI for the carousel and slides
+3. react router dom for routing
+4. unix-timestamp for accurately parsing time stamps pulled from OpenWeather
+5. axios to supplement the tanStack queries
+6. sass for nested css
+7. html react parser to parse HTML elements coming from Avalanche Canada
 
-In the project directory, you can run:
+## Installation
+1. Clone the repository:
 
-### `npm start`
+<pre>
+```javascript
+git clone <repository-url>
+```
+</pre>
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+2. Navigate to the project directory:
+<pre>
+```javascript
+cd snowDream
+```
+</pre>
+3. Install the dependencies for the frontend and backend:
+<pre>
+ //Install frontend dependencies
+ ```javascript
+cd client
+npm install
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+// Install backend dependencies
+cd ../server
+npm install
+```
+</pre>
 
-### `npm test`
+4. Configure the environment variables:
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+- Backend: Rename the example.env file in the server directory to .env and update the values based on your environment. Make sure to set the required environmental variables for the Google Login and database connection details.
 
-### `npm run build`
+5. Set up the database:
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+- Create a MySQL database for snowDream.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+- Run the migrations and seed data using Knex.js:
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+<pre>
+```javascript
+ //Apply migrations
+npx knex migrate:latest
 
-### `npm run eject`
+ //Seed the database with sample data
+npx knex seed:run
+```
+</pre>
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+7. Start the development server:
+<pre>
+```javascript
+ //Start the backend server
+cd server
+npm start
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+// Start the frontend development server in a separate terminal
+cd client
+npm start
+```
+</pre>
+7. Access the application in your browser at http://localhost:3000.
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+## Usage
+1. Upon launching the application, you will be presented with a curated list of backcountry areas.
+2. Select an area of interest to view detailed avalanche conditions and current weather data by clicking on the "show me the forecast" button. A modal will appear with relevant information for the selected area
+3. Optionally, log in with your Google account or create an account to access additional features and personalize your experience. Once logged in you can populate your favourited areas by visiting the "locations" page and clicking the "add to my favourites" button.
+4. The search bar will filter the available areas based on the text input into the search bar to narrow down your results
