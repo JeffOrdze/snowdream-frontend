@@ -25,28 +25,28 @@ snowDream is a web application that provides curated avalanche conditions and we
 1. Clone the repository:
 
 <pre>
-```javascript
+
 git clone <repository-url>
-```
+
 </pre>
 
 2. Navigate to the project directory:
 <pre>
-```javascript
+
 cd snowDream
-```
+
 </pre>
 3. Install the dependencies for the frontend and backend:
 <pre>
  //Install frontend dependencies
- ```javascript
+ 
 cd client
 npm install
 
 // Install backend dependencies
 cd ../server
 npm install
-```
+
 </pre>
 
 4. Configure the environment variables:
@@ -60,18 +60,18 @@ npm install
 - Run the migrations and seed data using Knex.js:
 
 <pre>
-```javascript
+
  //Apply migrations
 npx knex migrate:latest
 
  //Seed the database with sample data
 npx knex seed:run
-```
+
 </pre>
 
 7. Start the development server:
 <pre>
-```javascript
+
  //Start the backend server
 cd server
 npm start
@@ -79,7 +79,7 @@ npm start
 // Start the frontend development server in a separate terminal
 cd client
 npm start
-```
+
 </pre>
 7. Access the application in your browser at http://localhost:3000.
 
