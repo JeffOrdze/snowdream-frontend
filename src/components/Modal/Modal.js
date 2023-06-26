@@ -96,13 +96,13 @@ const Modal = ({ modalState, setModalState, mountainInfo }) => {
                               <p className="weather__p body">
                                 Temperature:{" "}
                                 <span className="weather__figure">
-                                  {day.main.temp}°C
+                                  {Math.floor(day.main.temp)}°C
                                 </span>
                               </p>
                               <p className="weather__p body">
                                 Feels like:{" "}
                                 <span className="weather__figure">
-                                  {day.main.feels_like}°C
+                                  {Math.floor(day.main.feels_like)}°C
                                 </span>
                               </p>
                               <p className="weather__p body">
