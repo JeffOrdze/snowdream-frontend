@@ -5,6 +5,7 @@ import {
   fetchUser,
   fetchLikedMountains,
 } from "../../utils/api";
+import { Link } from "react-router-dom"
 import Hero from "../../components/Hero/Hero";
 import Modal from "../../components/Modal/Modal";
 import Card from "../../components/Card/Card";
@@ -102,8 +103,9 @@ const HomePage = ({
               }
             >
               <p className="carousel__prompt">
-                Please login to view your carousel
+                Please <Link to={"/login"} className="carousel__link"> login </Link> to view your carousel
               </p>
+
             </div>
             <Carousel
               maw={"100%"}
