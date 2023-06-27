@@ -23,7 +23,6 @@ snowDream is a web application that provides curated avalanche conditions and we
 
 ## Installation
 1. Clone the repository:
-
 ```javascript
 
 git clone <repository-url>;
@@ -31,13 +30,13 @@ git clone <repository-url>;
 ```
 
 2. Navigate to the project directory:
-<pre>
+```javascript
 
 cd snowDream
 
-</pre>
+```
 3. Install the dependencies for the frontend and backend:
-<pre>
+```javascript
  //Install frontend dependencies
  
 cd client
@@ -47,19 +46,18 @@ npm install
 cd ../server
 npm install
 
-</pre>
-
+```
 4. Configure the environment variables:
 
 - Backend: Rename the example.env file in the server directory to .env and update the values based on your environment. Make sure to set the required environmental variables for the Google Login and database connection details.
 
 5. Set up the database:
 
-- Create a MySQL database for snowDream.
+- Create a MySQL database for snowDREAM.
 
 - Run the migrations and seed data using Knex.js:
 
-<pre>
+```javascript
 
  //Apply migrations
 npx knex migrate:latest
@@ -67,10 +65,10 @@ npx knex migrate:latest
  //Seed the database with sample data
 npx knex seed:run
 
-</pre>
+```
 
-7. Start the development server:
-<pre>
+6. Start the development server:
+```javascript
 
  //Start the backend server
 cd server
@@ -80,11 +78,12 @@ npm start
 cd client
 npm start
 
-</pre>
+```
 7. Access the application in your browser at http://localhost:3000.
 
 ## Usage
-1. Upon launching the application, you will be presented with a curated list of backcountry areas.
+
+1. Upon launching the application, you will be presented with the home page and a carousel of all backcountry areas currently that are currently available in the database.
 2. Select an area of interest to view detailed avalanche conditions and current weather data by clicking on the "show me the forecast" button. A modal will appear with relevant information for the selected area
 3. Optionally, log in with your Google account or create an account to access additional features and personalize your experience. Once logged in you can populate your favourited areas by visiting the "locations" page and clicking the "add to my favourites" button.
-4. The search bar will filter the available areas based on the text input into the search bar to narrow down your results
+4. The search bar on the locations page will filter the available areas based on the text input into the search bar to narrow down your results
