@@ -24,11 +24,11 @@ snowDream is a web application that provides curated avalanche conditions and we
 ## Installation
 1. Clone the repository:
 
-<pre>
+```javascript
 
-git clone <repository-url>
+git clone <repository-url>;
 
-</pre>
+```
 
 2. Navigate to the project directory:
 <pre>
