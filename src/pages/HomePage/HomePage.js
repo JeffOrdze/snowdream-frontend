@@ -95,18 +95,19 @@ const HomePage = ({
           </section>
           <h2 className="home__title section-heading">Your Areas</h2>
           <section className="carousel">
-            <div
-              className={
-                user
-                  ? "carousel__overlay--user carousel__overlay"
-                  : "carousel__overlay--no-user carousel__overlay"
-              }
-            >
+            {!user ? <div className="carousel__overlay">
               <p className="carousel__prompt">
-                Please <Link to={"/login"} className="carousel__link"> login </Link> to view your carousel
+                Not logged in! 
               </p>
-
-            </div>
+              <Link to={"/login"} className="carousel__btn button">Take me there!</Link>
+            </div>: 
+            userFavorites?.length === 0 ? <div className="carousel__overlay">
+            <p className="carousel__prompt">
+              You have no areas!
+            </p>
+            <Link to={"/locations"} className="carousel__btn button">Lets fix that</Link>
+          </div> :
+            null}
             <Carousel
               maw={"100%"}
               mx="auto"
