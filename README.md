@@ -13,7 +13,7 @@ snowDream is a web application that provides curated avalanche conditions and we
 **Database:** MySQL (using Knex.js for query building)
 
 ## Additional Libraries: 
-- [tanStack useQuery](https://tanstack.com/query/v4): for data fetching and server state management
+- [tanStack useQuery](https://tanstack.com/query/v4): for data caching and server state management
 - [mantine UI](https://mantine.dev/): for the carousel and slides
 - [react router](https://reactrouter.com/en/main): for routing
 - [unix-timestamp](https://www.npmjs.com/package/unix-timestamp): for accurately parsing time stamps pulled from OpenWeather
