@@ -1,0 +1,34 @@
+@use "../../styles/variables.scss" as *;
+@use "../../styles/mixins.scss" as *;
+
+.carousel {
+    position: relative;
+    margin-bottom: 2rem;
+    &__overlay {
+      @include flex(center, center, column);
+      gap:0.5rem;
+      width: 100%;
+      height: 100%;
+      color: white;
+      position: absolute;
+      top: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      background-color: rgba(0, 0, 0, 0.5);
+      z-index: 2;
+  
+      @include tablet { 
+        width: 90%;
+      }
+    }
+    &__btn { 
+      color: #555555;
+      background-color: whitesmoke;
+      box-shadow: $box-shadow;
+      font-family: Roboto Mono, sans-serif;
+      padding: 0.5rem 1rem;
+      &:hover {
+        box-shadow: $box-shadow-hover;
+      }
+    }
+  }
