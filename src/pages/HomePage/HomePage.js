@@ -5,7 +5,7 @@ import {
   fetchUser,
   fetchLikedMountains,
 } from "../../utils/api";
-import { Link } from "react-router-dom"
+import { Link } from "react-router-dom";
 import Hero from "../../components/Hero/Hero";
 import Modal from "../../components/Modal/Modal";
 import Card from "../../components/Card/Card";
@@ -93,21 +93,24 @@ const HomePage = ({
               })}
             </Carousel>
           </section>
+          
           <h2 className="home__title section-heading">Your Areas</h2>
           <section className="carousel">
-            {!user ? <div className="carousel__overlay">
-              <p className="carousel__prompt">
-                Not logged in! 
-              </p>
-              <Link to={"/login"} className="carousel__btn button">Take me there!</Link>
-            </div>: 
-            userFavorites?.length === 0 ? <div className="carousel__overlay">
-            <p className="carousel__prompt">
-              You have no areas!
-            </p>
-            <Link to={"/locations"} className="carousel__btn button">Lets fix that</Link>
-          </div> :
-            null}
+            {!user ? (
+              <div className="carousel__overlay">
+                <p className="carousel__prompt">Not logged in!</p>
+                <Link to={"/login"} className="carousel__btn button">
+                  Take me there!
+                </Link>
+              </div>
+            ) : userFavorites?.length === 0 ? (
+              <div className="carousel__overlay">
+                <p className="carousel__prompt">You have no areas!</p>
+                <Link to={"/locations"} className="carousel__btn button">
+                  Lets fix that
+                </Link>
+              </div>
+            ) : null}
             <Carousel
               maw={"100%"}
               mx="auto"

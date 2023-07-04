@@ -8,6 +8,7 @@ import "./Modal.scss";
 const timestamp = require("unix-timestamp");
 
 const Modal = ({ modalState, setModalState, mountainInfo }) => {
+  // info from onClick in carousal 
   const { name, lat, long } = mountainInfo;
 
   const { data, isLoading } = useQuery({

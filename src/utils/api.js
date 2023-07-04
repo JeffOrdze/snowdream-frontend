@@ -9,6 +9,7 @@ const fetchMountainList = async () => {
     console.log(error);
   }
 };
+
 //Get user information
 const fetchUser = async (setUser) => {
   const token = sessionStorage.getItem("token");
@@ -29,6 +30,7 @@ const fetchUser = async (setUser) => {
     console.log(error);
   }
 };
+
 //Get list of mountains a user has liked
 const fetchLikedMountains = async (userId) => {
   try {
@@ -40,6 +42,7 @@ const fetchLikedMountains = async (userId) => {
     console.log(error);
   }
 };
+
 //Add a mountain to users liked list
 const favoriteMountain = async (mountain_id, users_id) => {
   try {
@@ -78,7 +81,6 @@ const fetchInfo = async (lat, long) => {
 };
 
 //Google login
-
 const fetchGoogle = async (googleUser, setSuccess) => {
   try {
     const response = await axios.get(
