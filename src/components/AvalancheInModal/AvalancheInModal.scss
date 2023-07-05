@@ -1,0 +1,44 @@
+@use "../../styles/mixins.scss" as *;
+
+.avalanche {
+  @include flex(normal, normal, column);
+  gap: 0.5rem;
+  padding-bottom: 1rem;
+  margin-bottom: 1rem;
+  border-bottom: 1px solid gray;
+
+  & a {
+    color: blue;
+    font-size: 0.875rem;
+    line-height: 1.125rem;
+
+    @include tablet {
+      line-height: 1.375rem;
+    }
+  }
+
+  & strong {
+    font-weight: 400;
+    font-size: 0.875rem;
+    line-height: 1.125rem;
+
+    @include tablet {
+      line-height: 1.375rem;
+    }
+  }
+
+  &__section {
+    @include flex(normal, normal, column);
+    gap: 0.5rem;
+    font-size: 14px;
+  }
+  &__danger-container {
+    @include flex(normal, normal, column);
+    gap: 0.5rem;
+
+    @include desktop {
+      @include flex(space-between);
+      gap: 0;
+    }
+  }
+}

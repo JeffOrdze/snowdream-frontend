@@ -1,0 +1,38 @@
+@use "../../styles/mixins.scss" as *;
+
+.weather {
+  @include flex(normal, normal, column);
+  gap: 0.5rem;
+  padding-bottom: 1rem;
+  margin-bottom: 1rem;
+  border-bottom: 1px solid gray;
+
+  &__container {
+    @include desktop {
+      @include flex(space-between);
+      gap: 0.5rem;
+    }
+  }
+  &__card {
+    @include flex();
+    gap: 0.5rem;
+    font-size: 0.875rem;
+    background-color: rgba(128, 128, 128, 0.3);
+    border: 1px solid gray;
+    @include desktop {
+      padding: 0.5rem 1rem;
+    }
+  }
+  &__card-text {
+    @include flex(space-between, normal, column);
+    padding: 0.2rem;
+  }
+  &__section {
+    @include flex(normal, normal, column);
+    gap: 0.5rem;
+    font-size: 14px;
+  }
+  &__icon {
+    width: 75px;
+  }
+}
