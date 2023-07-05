@@ -1,0 +1,10 @@
+@use "../../styles/mixins.scss" as *;
+
+.leaflet-container {
+    height: 75vh;
+
+    @include tablet { 
+        height: 60vh;
+        margin-bottom: 1rem;
+    }
+  }

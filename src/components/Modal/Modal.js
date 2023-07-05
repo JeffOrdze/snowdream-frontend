@@ -1,12 +1,16 @@
-import { closeHandler } from "../../utils/handlers";
+import { closeHandler, modalInfoHandler, modalMapHandler } from "../../utils/handlers";
 import { useQuery } from "@tanstack/react-query";
+import { useState } from "react";
 import { fetchInfo } from "../../utils/api";
 import AvalancheInModal from "../AvalancheInModal/AvalancheInModal";
 import WeatherInModal from "../WeatherInModal/WeatherInModal";
+import MapsInModal from "../MapsInModal/MapsInModal";
 import exit from "../../assets/images/icons/close-24px.svg";
 import "./Modal.scss";
 
 const Modal = ({ modalState, setModalState, mountainInfo }) => {
+  const [modalTab, setModalTab] = useState(1);
+
   // info from onClick in carousal
   const { name, lat, long } = mountainInfo;
 
@@ -38,18 +42,34 @@ const Modal = ({ modalState, setModalState, mountainInfo }) => {
                     onClick={() => closeHandler(setModalState)}
                   />
                 </div>
+
                 <div className="modal__button-container">
-                  <button className="modal__button button card__btn">Mountain Info</button>
-                  <button className="modal__button button card__btn">Map</button>
-                  <button className="modal__button button card__btn">Check List</button>
+                  <button className="modal__button button card__btn" onClick={() => modalInfoHandler(setModalTab)}>
+                    Mountain Info
+                  </button>
+                  <button className="modal__button button card__btn" onClick={() => modalMapHandler(setModalTab)}>
+                    Map
+                  </button>
+                  <button className="modal__button button card__btn">
+                    Check List
+                  </button>
                 </div>
+
                 <h2 className="modal__title">{name}</h2>
-                <AvalancheInModal
-                  confidence={confidence}
-                  dangerRatings={dangerRatings}
-                  highlights={highlights}
-                />
-                <WeatherInModal weatherData={weatherData} />
+
+                {modalTab === 1 ? (
+                  <>
+                    <AvalancheInModal
+                      confidence={confidence}
+                      dangerRatings={dangerRatings}
+                      highlights={highlights}
+                    />
+                    <WeatherInModal weatherData={weatherData} />
+                  </>
+                ) : modalTab === 2 ? (
+                  <MapsInModal lat={lat} long={long} />
+                ) : null}
+
               </div>
             </article>
           </div>

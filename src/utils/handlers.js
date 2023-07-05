@@ -15,4 +15,12 @@ const logOutHandler = (setUser) => {
   setUser(null);
 };
 
-export { modalHandler, closeHandler, logOutHandler };
+const modalInfoHandler = (setModalTab) => { 
+setModalTab(1)
+}
+
+const modalMapHandler = (setModalTab) => { 
+setModalTab(2)
+}
+
+export { modalHandler, closeHandler, logOutHandler, modalInfoHandler, modalMapHandler };
