@@ -42,6 +42,11 @@
     top: 10%;
     padding: 1rem 3rem;
   }
+  &__button-container { 
+    @include flex(center,center);
+    gap: 1rem;
+    margin-bottom: 1rem;
+  }
   &__container {
     @include flex(normal, normal, column);
   }
@@ -57,7 +62,8 @@
     margin-bottom: 0.5rem;
   }
 }
-
 .exit {
   cursor: pointer;
 }
+
+

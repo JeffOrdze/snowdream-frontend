@@ -38,6 +38,11 @@ const Modal = ({ modalState, setModalState, mountainInfo }) => {
                     onClick={() => closeHandler(setModalState)}
                   />
                 </div>
+                <div className="modal__button-container">
+                  <button className="modal__button button card__btn">Mountain Info</button>
+                  <button className="modal__button button card__btn">Map</button>
+                  <button className="modal__button button card__btn">Check List</button>
+                </div>
                 <h2 className="modal__title">{name}</h2>
                 <AvalancheInModal
                   confidence={confidence}
