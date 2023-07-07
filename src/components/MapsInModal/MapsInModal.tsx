@@ -3,7 +3,7 @@ import L from "leaflet";
 import "leaflet/dist/leaflet.css";
 import "./MapsInModal.scss";
 
-delete L.Icon.Default.prototype._getIconUrl;
+// delete L.Icon.Default.prototype._getIconUrl;
 
 L.Icon.Default.mergeOptions({
   iconRetinaUrl: require("leaflet/dist/images/marker-icon-2x.png"),
@@ -11,8 +11,13 @@ L.Icon.Default.mergeOptions({
   shadowUrl: require("leaflet/dist/images/marker-shadow.png"),
 });
 
-const MapsInModal = ({ lat, long }) => {
-  const position = [lat, long];
+interface MapProps { 
+  lat: string, 
+  long: string
+}
+
+const MapsInModal: React.FC<MapProps> = ({ lat, long }) => {
+  const position: [number, number] = [parseFloat(lat), parseFloat(long)];
   return (
     <div className="map">
       <h2 className="modal__title">Area Map</h2>
