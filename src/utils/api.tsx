@@ -1,4 +1,5 @@
 import axios from "axios";
+import { SetUser, SetSuccess, GoogleUser } from "../types/types";
 
 //Get list of all mountains
 const fetchMountainList = async () => {
@@ -11,7 +12,7 @@ const fetchMountainList = async () => {
 };
 
 //Get user information
-const fetchUser = async (setUser) => {
+const fetchUser = async (setUser: SetUser) => {
   const token = sessionStorage.getItem("token");
 
   if (!token) {
@@ -32,7 +33,7 @@ const fetchUser = async (setUser) => {
 };
 
 //Get list of mountains a user has liked
-const fetchLikedMountains = async (userId) => {
+const fetchLikedMountains = async (userId: number) => {
   try {
     const response = await axios.get("http://localhost:8080/users/mountains", {
       params: { id: userId },
@@ -44,7 +45,7 @@ const fetchLikedMountains = async (userId) => {
 };
 
 //Add a mountain to users liked list
-const favoriteMountain = async (mountain_id, users_id) => {
+const favoriteMountain = async (mountain_id:number, users_id:number) => {
   try {
     await axios.post("http://localhost:8080/users/mountains", {
       mountain_id,
@@ -56,7 +57,7 @@ const favoriteMountain = async (mountain_id, users_id) => {
 };
 
 //Remove a mountain from a users liked list
-const removeFavoriteMountain = async (mountain_id, users_id) => { 
+const removeFavoriteMountain = async (mountain_id:number, users_id:number) => { 
   try {
     await axios.delete("http://localhost:8080/users/mountains", {
      data:{ mountain_id,
@@ -68,7 +69,7 @@ const removeFavoriteMountain = async (mountain_id, users_id) => {
 }
 
 //Get avalanche and weather information for selected mountain
-const fetchInfo = async (lat, long) => {
+const fetchInfo = async (lat:string, long:string) => {
   try {
     const response = Promise.all([
       axios.get(`http://localhost:8080/avalanche/${lat}/${long}`),
@@ -81,7 +82,7 @@ const fetchInfo = async (lat, long) => {
 };
 
 //Google login
-const fetchGoogle = async (googleUser, setSuccess) => {
+const fetchGoogle = async (googleUser: GoogleUser, setSuccess:SetSuccess) => {
   try {
     const response = await axios.get(
       `https://www.googleapis.com/oauth2/v1/userinfo?access_token=${googleUser.access_token}`,

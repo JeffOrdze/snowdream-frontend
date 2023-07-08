@@ -3,28 +3,35 @@ import { useNavigate } from "react-router-dom";
 import { fetchGoogle } from "../../utils/api";
 import { useQuery } from "@tanstack/react-query";
 import { useGoogleLogin } from "@react-oauth/google";
+import { SetSuccess, GoogleUser } from "../../types/types";
 import google from "../../assets/images/icons/google.svg"
 import "./GoogleLogin.scss";
 
-function GoogleLogin({ setSuccess }) {
-  const [googleUser, setGoogleUser] = useState(null);
+interface Props { 
+  setSuccess: SetSuccess
+}
+
+const GoogleLogin: React.FC<Props> =  ({ setSuccess }) => {
+
+  const [googleUser, setGoogleUser] = useState<GoogleUser|null>(null);
+
   const navigate = useNavigate();
 
   const login = useGoogleLogin({
-    onSuccess: (codeResponse) => setGoogleUser(codeResponse),
+    onSuccess: (codeResponse: any) => setGoogleUser(codeResponse),
     onError: (error) => console.log("Login Failed:", error),
   });
 
   const { data: profile, isSuccess } = useQuery({
     queryKey: ["googleInfo"],
-    queryFn: () => fetchGoogle(googleUser, setSuccess),
+    queryFn: () => fetchGoogle(googleUser!, setSuccess),
     enabled: !!googleUser,
   });
 
 if (isSuccess) { 
   setTimeout(()=> navigate("/"), 2000)
 }
-
+console.log(googleUser)
   return (
     <div className="google">
       {!profile ? (

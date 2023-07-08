@@ -1,6 +1,12 @@
 import "./Input.scss";
 
-function Input({ label, name, type }) {
+interface Props { 
+    label: string,
+    name: string,
+    type: string
+}
+
+const Input: React.FC<Props> = ({ label, name, type }) =>{
     return (
         <div className="field">
             <label htmlFor={name} className="field__label">

@@ -1,8 +1,14 @@
 import { NavLink, Link } from "react-router-dom";
 import { logOutHandler } from "../../utils/handlers";
 import "./Header.scss";
+import { User , SetUser } from "../../types/types";
 
-const Header = ({ user, setUser }) => {
+interface Props { 
+  user: User | null;
+  setUser: SetUser;
+}
+
+const Header: React.FC<Props> = ({ user, setUser }) => {
   return (
     <header className="header">
       <Link to={"/"}>

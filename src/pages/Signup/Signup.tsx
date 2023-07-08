@@ -8,19 +8,19 @@ const Signup = () => {
   const navigate = useNavigate();
   const [error, setError] = useState("");
   const [success, setSuccess] = useState(false);
-  const submitHandler = (e) => {
+  const submitHandler = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
     axios
       .post("http://localhost:8080/users/signup", {
-        name: e.target.name.value,
-        username: e.target.email.value,
-        password: e.target.password.value,
+        name: e.currentTarget.givenName.value,
+        username: e.currentTarget.email.value,
+        password: e.currentTarget.password.value,
       })
       .then(() => {
         setSuccess(true);
         setError("");
-        e.target.reset();
+        e.currentTarget.reset();
 
         setTimeout(() => {
           navigate("/login");
@@ -36,7 +36,7 @@ const Signup = () => {
       <form className="signup" onSubmit={submitHandler}>
         <h2 className="signup__title">Sign up</h2>
 
-        <Input type="text" name="name" label="Name" />
+        <Input type="text" name="givenName" label="Name" />
         <Input type="text" name="email" label="Email" />
         <Input type="password" name="password" label="Password" />
 

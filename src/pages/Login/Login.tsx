@@ -1,29 +1,33 @@
 import "./Login.scss";
 import Input from "../../components/Input/Input";
 import GoogleLogin from "../../components/GoogleLogin/GoogleLogin";
+import { SetSuccess } from "../../types/types";
 import axios from "axios";
 import { useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
 
 function Login() {
   const [error, setError] = useState("");
-  const [success, setSuccess] = useState("")
+  const [success, setSuccess]: [
+    success: string,
+    setSuccess: SetSuccess
+  ] = useState("");
   const navigate = useNavigate();
 
-  const handleSubmit = (event) => {
+  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
 
     axios
       .post("http://localhost:8080/users/login", {
-        username: event.target.email.value,
-        password: event.target.password.value,
+        username: event.currentTarget.email.value,
+        password: event.currentTarget.password.value,
       })
       .then((response) => {
         sessionStorage.setItem("token", response.data.token);
-        setSuccess("Successfully logged in!")
-        setTimeout(()=> {
-            navigate("/");
-       }, 2000)
+        setSuccess("Successfully logged in!");
+        setTimeout(() => {
+          navigate("/");
+        }, 2000);
       })
       .catch((error) => {
         setError(error.response.data.message);
@@ -40,13 +44,16 @@ function Login() {
 
         <button className="login__button button">Log in</button>
 
-        { success && <div className="login__message">{success}</div> }
+        {success && <div className="login__message">{success}</div>}
         {error && <div className="login__message">{error}</div>}
       </form>
       <p>
-        Need an account? <Link to="/sign-up"className="login__link">Sign up</Link>
+        Need an account?{" "}
+        <Link to="/sign-up" className="login__link">
+          Sign up
+        </Link>
       </p>
-      <GoogleLogin setSuccess={setSuccess}/>
+      <GoogleLogin setSuccess={setSuccess} />
     </main>
   );
 }
