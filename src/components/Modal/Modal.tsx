@@ -2,13 +2,20 @@ import { closeHandler, modalInfoHandler, modalMapHandler } from "../../utils/han
 import { useQuery } from "@tanstack/react-query";
 import { useState } from "react";
 import { fetchInfo } from "../../utils/api";
+import { Data, ModalState, SetModalState } from "../../types/types";
 import AvalancheInModal from "../AvalancheInModal/AvalancheInModal";
 import WeatherInModal from "../WeatherInModal/WeatherInModal";
-import MapsInModal from "../MapsInModal/MapsInModal.tsx";
+import MapsInModal from "../MapsInModal/MapsInModal";
 import exit from "../../assets/images/icons/close-24px.svg";
 import "./Modal.scss";
 
-const Modal = ({ modalState, setModalState, mountainInfo }) => {
+interface Props { 
+  modalState: ModalState
+  setModalState: SetModalState
+  mountainInfo: Data
+}
+
+const Modal: React.FC<Props> = ({ modalState, setModalState, mountainInfo }) => {
   const [modalTab, setModalTab] = useState(1);
 
   // info from onClick in carousal
@@ -77,6 +84,7 @@ const Modal = ({ modalState, setModalState, mountainInfo }) => {
       </>
     );
   }
+  return null
 };
 
 export default Modal;

@@ -8,9 +8,18 @@ import {
   fetchUser,
   fetchLikedMountains,
 } from "../../utils/api";
+import { SetUser, SetModalState, Data, SetDataObject } from "../../types/types";
 import "./Locations.scss";
 
-const Locations = ({
+interface Props {
+  setUser: SetUser;
+  showModal: boolean;
+  setShowModal: SetModalState;
+  mountainInfo: Data;
+  setMountainInfo: SetDataObject;
+}
+
+const Locations: React.FC<Props> = ({
   setUser,
   showModal,
   setShowModal,
@@ -18,11 +27,6 @@ const Locations = ({
   setMountainInfo,
 }) => {
   const [searchValue, setSearchValue] = useState("");
-
-  const searchHandler = (e) => {
-    const lowerCase = e.target.value.toLowerCase();
-    setSearchValue(lowerCase);
-  };
 
   const {
     isLoading: avIsLoad,
@@ -47,7 +51,7 @@ const Locations = ({
     enabled: !!userId,
   });
 
-  const filteredData = avData?.filter((mountain) => {
+  const filteredData = avData?.filter((mountain: Data) => {
     if (searchValue === "") {
       return mountain;
     } else {
@@ -59,7 +63,7 @@ const Locations = ({
     return <span>Loading...</span>;
   }
 
-  if (avIsError) {
+  if (avIsError && avError instanceof Error) {
     return <span>Error: {avError.message}</span>;
   }
 
@@ -71,9 +75,9 @@ const Locations = ({
         mountainInfo={mountainInfo}
       />
       <div className="content-block">
-        <Search searchHandler={searchHandler} />
+        <Search setSearchValue={setSearchValue} />
         <section className="locations">
-          {filteredData.map((mountain) => (
+          {filteredData.map((mountain: Data) => (
             <Card
               key={mountain.id}
               data={mountain}

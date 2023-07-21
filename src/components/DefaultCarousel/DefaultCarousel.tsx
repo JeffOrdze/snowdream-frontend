@@ -1,26 +1,19 @@
 import { Carousel } from "@mantine/carousel";
-import { Link } from "react-router-dom";
+import { Data, SetDataObject, SetModalState } from "../../types/types";
 import Card from "../Card/Card";
-import "./UserCarousel.scss";
+import "./DefaultCarousel.scss"
 
-const UserCarousel = ({user, userId, userFavorites, setShowModal, setMountainInfo}) => {
+interface Props { 
+avData: Data[]
+setShowModal: SetModalState
+setMountainInfo: SetDataObject
+userId: number
+}
+
+const DefaultCarousel: React.FC<Props> = ({avData, setShowModal, setMountainInfo, userId}) => {
+ 
     return (
         <section className="carousel">
-        {!user ? (
-          <div className="carousel__overlay">
-            <p className="carousel__prompt">Not logged in!</p>
-            <Link to={"/login"} className="carousel__btn button">
-              Take me there!
-            </Link>
-          </div>
-        ) : userFavorites?.length === 0 ? (
-          <div className="carousel__overlay">
-            <p className="carousel__prompt">You have no areas!</p>
-            <Link to={"/locations"} className="carousel__btn button">
-              Lets fix that
-            </Link>
-          </div>
-        ) : null}
         <Carousel
           maw={"100%"}
           mx="auto"
@@ -37,7 +30,7 @@ const UserCarousel = ({user, userId, userFavorites, setShowModal, setMountainInf
           ]}
           dragFree
         >
-          {userFavorites?.map((mountain) => {
+          {avData.map((mountain) => {
             return (
               <Carousel.Slide key={mountain.id}>
                 <Card
@@ -55,4 +48,4 @@ const UserCarousel = ({user, userId, userFavorites, setShowModal, setMountainInf
     );
 };
 
-export default UserCarousel;
+export default DefaultCarousel;

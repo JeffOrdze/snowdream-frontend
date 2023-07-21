@@ -1,7 +1,14 @@
 import parse from "html-react-parser";
+import { Confidence, DangerRatings } from "../../types/types";
 import "./AvalancheInModal.scss";
 
-const AvalancheInModal = ({ confidence, dangerRatings, highlights }) => {
+interface Props { 
+  confidence: Confidence 
+  dangerRatings: DangerRatings[]
+  highlights: string
+}
+
+const AvalancheInModal: React.FC<Props> = ({ confidence, dangerRatings, highlights }) => {
   return (
     <section className="avalanche">
       <h2 className="modal__title">Avalanche Data</h2>

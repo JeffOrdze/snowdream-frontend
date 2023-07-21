@@ -3,12 +3,12 @@ import { useNavigate } from "react-router-dom";
 import { fetchGoogle } from "../../utils/api";
 import { useQuery } from "@tanstack/react-query";
 import { useGoogleLogin } from "@react-oauth/google";
-import { SetSuccess, GoogleUser } from "../../types/types";
+import { SetString, GoogleUser } from "../../types/types";
 import google from "../../assets/images/icons/google.svg"
 import "./GoogleLogin.scss";
 
 interface Props { 
-  setSuccess: SetSuccess
+  setSuccess: SetString
 }
 
 const GoogleLogin: React.FC<Props> =  ({ setSuccess }) => {
@@ -31,7 +31,6 @@ const GoogleLogin: React.FC<Props> =  ({ setSuccess }) => {
 if (isSuccess) { 
   setTimeout(()=> navigate("/"), 2000)
 }
-console.log(googleUser)
   return (
     <div className="google">
       {!profile ? (

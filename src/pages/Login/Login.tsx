@@ -1,26 +1,27 @@
 import "./Login.scss";
 import Input from "../../components/Input/Input";
 import GoogleLogin from "../../components/GoogleLogin/GoogleLogin";
-import { SetSuccess } from "../../types/types";
+import { SetString, SubmitEvent } from "../../types/types";
 import axios from "axios";
 import { useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
 
 function Login() {
+  
   const [error, setError] = useState("");
   const [success, setSuccess]: [
     success: string,
-    setSuccess: SetSuccess
+    setSuccess: SetString
   ] = useState("");
   const navigate = useNavigate();
 
-  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
-    event.preventDefault();
+  const handleSubmit = (e: SubmitEvent) => {
+    e.preventDefault();
 
     axios
       .post("http://localhost:8080/users/login", {
-        username: event.currentTarget.email.value,
-        password: event.currentTarget.password.value,
+        username: e.currentTarget.email.value,
+        password: e.currentTarget.password.value,
       })
       .then((response) => {
         sessionStorage.setItem("token", response.data.token);

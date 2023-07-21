@@ -1,7 +1,7 @@
 import { googleLogout } from "@react-oauth/google";
-import { SetUser, SetModalState, Data, SetData, SetModalTab } from "../types/types";
+import { SetUser, SetModalState, Data, SetDataObject, SetModalTab, InputEvent, SetString } from "../types/types";
 
-const modalHandler = (setModalState: SetModalState, data: Data[], setMountainInfo: SetData) => {
+const modalHandler = (setModalState: SetModalState, data: Data, setMountainInfo: SetDataObject) => {
   setModalState(true);
   setMountainInfo(data);
 };
@@ -24,4 +24,9 @@ const modalMapHandler = (setModalTab: SetModalTab) => {
   setModalTab(2)
 }
 
-export { modalHandler, closeHandler, logOutHandler, modalInfoHandler, modalMapHandler };
+const searchHandler = (e: InputEvent, setSearchValue: SetString) => {
+  const lowerCase = e.target.value.toLowerCase();
+  setSearchValue(lowerCase);
+};
+
+export { modalHandler, closeHandler, logOutHandler, modalInfoHandler, modalMapHandler, searchHandler };

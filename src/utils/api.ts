@@ -1,5 +1,5 @@
 import axios from "axios";
-import { SetUser, SetSuccess, GoogleUser } from "../types/types";
+import { SetUser, SetString, GoogleUser } from "../types/types";
 
 //Get list of all mountains
 const fetchMountainList = async () => {
@@ -59,6 +59,7 @@ const favoriteMountain = async (mountain_id:number, users_id:number) => {
 //Remove a mountain from a users liked list
 const removeFavoriteMountain = async (mountain_id:number, users_id:number) => { 
   try {
+    console.log(mountain_id, users_id)
     await axios.delete("http://localhost:8080/users/mountains", {
      data:{ mountain_id,
       users_id}
@@ -72,8 +73,8 @@ const removeFavoriteMountain = async (mountain_id:number, users_id:number) => {
 const fetchInfo = async (lat:string, long:string) => {
   try {
     const response = Promise.all([
-      axios.get(`http://localhost:8080/avalanche/${lat}/${long}`),
-      axios.get(`http://localhost:8080/weather/${lat}/${long}`),
+    await axios.get(`http://localhost:8080/avalanche/${lat}/${long}`),
+    await axios.get(`http://localhost:8080/weather/${lat}/${long}`),
     ]);
     return response;
   } catch (error) {
@@ -82,7 +83,7 @@ const fetchInfo = async (lat:string, long:string) => {
 };
 
 //Google login
-const fetchGoogle = async (googleUser: GoogleUser, setSuccess:SetSuccess) => {
+const fetchGoogle = async (googleUser: GoogleUser, setSuccess:SetString) => {
   try {
     const response = await axios.get(
       `https://www.googleapis.com/oauth2/v1/userinfo?access_token=${googleUser.access_token}`,

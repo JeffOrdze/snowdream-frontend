@@ -2,13 +2,14 @@ import axios from "axios";
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import Input from "../../components/Input/Input";
+import { SubmitEvent } from "../../types/types";
 import "./Signup.scss";
 
 const Signup = () => {
   const navigate = useNavigate();
   const [error, setError] = useState("");
   const [success, setSuccess] = useState(false);
-  const submitHandler = (e: React.FormEvent<HTMLFormElement>) => {
+  const submitHandler = (e: SubmitEvent) => {
     e.preventDefault();
 
     axios

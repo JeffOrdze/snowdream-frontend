@@ -1,7 +1,13 @@
 import search from "../../assets/images/icons/search.svg";
+import {searchHandler} from "../../utils/handlers";
+import { SetString } from "../../types/types";
 import "./Search.scss";
 
-const Search = ({ searchHandler}) => {
+interface Props { 
+  setSearchValue: SetString
+}
+
+const Search: React.FC<Props> = ({ setSearchValue }) => {
   return (
     <div className="search">
       <img src={search} alt="search" className="search__icon" />
@@ -9,7 +15,7 @@ const Search = ({ searchHandler}) => {
         type="text"
         className="search__input"
         placeholder="Search"
-        onChange={searchHandler}
+        onChange={(e)=> searchHandler(e, setSearchValue)}
       ></input>
     </div>
   );

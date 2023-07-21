@@ -4,13 +4,23 @@ import {
   fetchUser,
   fetchLikedMountains,
 } from "../../utils/api";
+import { User, SetUser, SetModalState, Data, SetDataObject } from "../../types/types";
 import Hero from "../../components/Hero/Hero";
 import Modal from "../../components/Modal/Modal";
 import DefaultCarousel from "../../components/DefaultCarousel/DefaultCarousel";
 import UserCarousel from "../../components/UserCarousel/UserCarousel";
 import "./Home.scss";
 
-const HomePage = ({
+interface Props { 
+  user: User | null
+  setUser: SetUser 
+  showModal:  boolean
+  setShowModal: SetModalState
+  mountainInfo: Data
+  setMountainInfo: SetDataObject
+}
+
+const HomePage: React.FC<Props> = ({
   user,
   setUser,
   showModal,
@@ -43,7 +53,7 @@ const HomePage = ({
     enabled: !!userId,
   });
 
-  if (avIsError) {
+  if (avIsError && avError instanceof Error) {
     return <span>Error: {avError.message}</span>;
   }
 
