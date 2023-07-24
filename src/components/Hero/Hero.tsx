@@ -1,6 +1,6 @@
 import "./Hero.scss";
 
-const Hero = () => {
+const Hero: React.FC = () => {
   return (
     <section className="hero">
       <div className="hero__text">

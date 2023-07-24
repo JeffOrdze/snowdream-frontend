@@ -1,7 +1,7 @@
 import { Carousel } from "@mantine/carousel";
 import { Link } from "react-router-dom";
-import {SetDataObject, SetModalState, User, UserFavorites } from "../../types/types";
 import UserCard from "../Card/UserCard";
+import {SetDataObject, SetModalState, User, UserFavorites } from "../../types/types";
 import "./UserCarousel.scss";
 
 interface Props { 
@@ -46,7 +46,7 @@ const UserCarousel: React.FC<Props> = ({user, userId, userFavorites, setShowModa
           ]}
           dragFree
         >
-          {userFavorites?.map((mountain) => {
+          {userFavorites?.map((mountain: UserFavorites) => {
             return (
               <Carousel.Slide key={mountain.id}>
                 <UserCard

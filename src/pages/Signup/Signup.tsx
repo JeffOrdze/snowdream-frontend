@@ -1,37 +1,38 @@
-import axios from "axios";
-import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
+import { useState } from "react";
+import axios from "axios";
 import Input from "../../components/Input/Input";
 import { SubmitEvent } from "../../types/types";
 import "./Signup.scss";
 
 const Signup: React.FC = () => {
+  const backendURI = process.env.REACT_APP_BACKEND_URI
   const navigate = useNavigate();
+  
   const [error, setError] = useState("");
   const [success, setSuccess] = useState(false);
-  const submitHandler = (e: SubmitEvent) => {
+console.log(backendURI)
+  const submitHandler = async (e: SubmitEvent) => {
     e.preventDefault();
-
-    axios
-      .post("http://localhost:8080/users/signup", {
+   
+    try {
+      await axios.post(`${backendURI}/users/signup`, {
         name: e.currentTarget.givenName.value,
         username: e.currentTarget.email.value,
         password: e.currentTarget.password.value,
-      })
-      .then(() => {
-        setSuccess(true);
-        setError("");
-        e.currentTarget.reset();
-
-        setTimeout(() => {
-          navigate("/login");
-        }, 1000);
-      })
-      .catch((error) => {
-        setSuccess(false);
-        setError(error.response.data);
       });
+      setSuccess(true)
+      setError("")
+    
+      setTimeout(() => { 
+        navigate("/login")
+      }, 1000)
+    } catch (error: any) {
+      setSuccess(false);
+      setError(error.response.data.message);
+    }
   };
+
   return (
     <main className="main signup-main">
       <form className="signup" onSubmit={submitHandler}>

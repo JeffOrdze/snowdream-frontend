@@ -1,6 +1,6 @@
 import { Carousel } from "@mantine/carousel";
-import { Data, SetDataObject, SetModalState } from "../../types/types";
 import Card from "../Card/Card";
+import { Data, SetDataObject, SetModalState } from "../../types/types";
 import "./DefaultCarousel.scss"
 
 interface Props { 
@@ -30,7 +30,7 @@ const DefaultCarousel: React.FC<Props> = ({avData, setShowModal, setMountainInfo
           ]}
           dragFree
         >
-          {avData.map((mountain) => {
+          {avData.map((mountain: Data) => {
             return (
               <Carousel.Slide key={mountain.id}>
                 <Card

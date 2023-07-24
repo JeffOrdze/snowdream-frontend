@@ -21,7 +21,7 @@ const AvalancheInModal: React.FC<Props> = ({ confidence, dangerRatings, highligh
       <div className="avalanche__section">
         <h3 className="modal__heading sub-heading">Danger Rating</h3>
         <div className="avalanche__danger-container body">
-          {dangerRatings.map((rating, index) => {
+          {dangerRatings.map((rating: DangerRatings, index: number) => {
             return (
               <div className="avalanche__danger" key={index}>
                 <h4 className="modal__subheading sub-heading">

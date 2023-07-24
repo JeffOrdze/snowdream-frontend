@@ -119,3 +119,5 @@ export type SetModalState = React.Dispatch<React.SetStateAction<ModalState>>;
 export type SetString = React.Dispatch<React.SetStateAction<string>>;
 
 export type SetGoogleUser = React.Dispatch<React.SetStateAction<GoogleUser>>;
+
+export type ErrorMessage = string

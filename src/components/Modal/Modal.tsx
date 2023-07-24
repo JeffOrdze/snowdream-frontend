@@ -1,12 +1,12 @@
 import { closeHandler, modalInfoHandler, modalMapHandler } from "../../utils/handlers";
 import { useQuery } from "@tanstack/react-query";
 import { useState } from "react";
-import { fetchInfo } from "../../utils/api";
-import { Data, ModalState, SetModalState } from "../../types/types";
 import AvalancheInModal from "../AvalancheInModal/AvalancheInModal";
 import WeatherInModal from "../WeatherInModal/WeatherInModal";
 import MapsInModal from "../MapsInModal/MapsInModal";
 import exit from "../../assets/images/icons/close-24px.svg";
+import { fetchInfo } from "../../utils/api";
+import { Data, ModalState, SetModalState } from "../../types/types";
 import "./Modal.scss";
 
 interface Props { 

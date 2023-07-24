@@ -4,11 +4,11 @@ import {
   fetchUser,
   fetchLikedMountains,
 } from "../../utils/api";
-import { User, SetUser, SetModalState, Data, SetDataObject } from "../../types/types";
 import Hero from "../../components/Hero/Hero";
 import Modal from "../../components/Modal/Modal";
 import DefaultCarousel from "../../components/DefaultCarousel/DefaultCarousel";
 import UserCarousel from "../../components/UserCarousel/UserCarousel";
+import { User, SetUser, SetModalState, Data, SetDataObject } from "../../types/types";
 import "./Home.scss";
 
 interface Props { 

@@ -1,7 +1,6 @@
 import { useMutation, useQueryClient, useQuery } from "@tanstack/react-query";
 import { modalHandler } from "../../utils/handlers";
-import { favoriteMountain, removeFavoriteMountain } from "../../utils/api";
-import { fetchInfo } from "../../utils/api";
+import { favoriteMountain, removeFavoriteMountain, fetchInfo } from "../../utils/api";
 import { Data, SetDataObject, SetModalState } from "../../types/types";
 import "./Card.scss";
 

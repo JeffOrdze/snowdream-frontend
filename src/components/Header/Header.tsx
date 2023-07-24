@@ -1,7 +1,7 @@
 import { NavLink, Link } from "react-router-dom";
 import { logOutHandler } from "../../utils/handlers";
-import "./Header.scss";
 import { User , SetUser } from "../../types/types";
+import "./Header.scss";
 
 interface Props { 
   user: User | null;

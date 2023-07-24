@@ -1,10 +1,10 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { fetchGoogle } from "../../utils/api";
 import { useQuery } from "@tanstack/react-query";
 import { useGoogleLogin } from "@react-oauth/google";
-import { SetString, GoogleUser } from "../../types/types";
 import google from "../../assets/images/icons/google.svg"
+import { SetString, GoogleUser } from "../../types/types";
 import "./GoogleLogin.scss";
 
 interface Props { 

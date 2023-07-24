@@ -1,18 +1,18 @@
 import { WeatherData } from "../../types/types";
 import "./WeatherInModal.scss";
+const timestamp = require("unix-timestamp");
 
 interface Props { 
   weatherData: WeatherData[]
 }
 
 const WeatherInModal: React.FC<Props> = ({ weatherData }) => {
-  // parse timestamp from weather api to human readable
-  const timestamp = require("unix-timestamp");
+
   return (
     <section className="weather body">
       <h2 className="modal__title sub-heading">Weather</h2>
       <div className="weather__container">
-        {weatherData.map((day, index) => {
+        {weatherData.map((day: WeatherData, index: number) => {
           return (
             <div className="weather__section" key={index}>
               <h3 className="modal__subheading">

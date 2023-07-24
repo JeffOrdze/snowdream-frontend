@@ -1,10 +1,13 @@
 import axios from "axios";
-import { SetUser, SetString, GoogleUser } from "../types/types";
+import { SetUser, SetString, GoogleUser, SubmitEvent } from "../types/types";
+import { NavigateFunction } from "react-router-dom";
+
+const backendURI = process.env.REACT_APP_BACKEND_URI
 
 //Get list of all mountains
 const fetchMountainList = async () => {
   try {
-    const response = await axios.get("http://localhost:8080/avalanche");
+    const response = await axios.get(`${backendURI}/avalanche`);
     return response.data;
   } catch (error) {
     console.error(error);
@@ -20,7 +23,7 @@ const fetchUser = async (setUser: SetUser) => {
   }
 
   try {
-    const response = await axios.get("http://localhost:8080/users/current", {
+    const response = await axios.get(`${backendURI}/users/current`, {
       headers: {
         Authorization: `Bearer ${token}`,
       },
@@ -35,7 +38,7 @@ const fetchUser = async (setUser: SetUser) => {
 //Get list of mountains a user has liked
 const fetchLikedMountains = async (userId: number) => {
   try {
-    const response = await axios.get("http://localhost:8080/users/mountains", {
+    const response = await axios.get(`${backendURI}/users/mountains`, {
       params: { id: userId },
     });
     return response.data;
@@ -45,9 +48,9 @@ const fetchLikedMountains = async (userId: number) => {
 };
 
 //Add a mountain to users liked list
-const favoriteMountain = async (mountain_id:number, users_id:number) => {
+const favoriteMountain = async (mountain_id: number, users_id: number) => {
   try {
-    await axios.post("http://localhost:8080/users/mountains", {
+    await axios.post(`${backendURI}/users/mountains`, {
       mountain_id,
       users_id,
     });
@@ -57,23 +60,25 @@ const favoriteMountain = async (mountain_id:number, users_id:number) => {
 };
 
 //Remove a mountain from a users liked list
-const removeFavoriteMountain = async (mountain_id:number, users_id:number) => { 
+const removeFavoriteMountain = async (
+  mountain_id: number,
+  users_id: number
+) => {
   try {
-    await axios.delete("http://localhost:8080/users/mountains", {
-     data:{ mountain_id,
-      users_id}
+    await axios.delete(`${backendURI}/users/mountains`, {
+      data: { mountain_id, users_id },
     });
   } catch (error) {
-    console.error("Hiting catch",error);
+    console.error("Hiting catch", error);
   }
-}
+};
 
 //Get avalanche and weather information for selected mountain
-const fetchInfo = async (lat:string, long:string) => {
+const fetchInfo = async (lat: string, long: string) => {
   try {
     const response = Promise.all([
-    await axios.get(`http://localhost:8080/avalanche/${lat}/${long}`),
-    await axios.get(`http://localhost:8080/weather/${lat}/${long}`),
+      axios.get(`${backendURI}/avalanche/${lat}/${long}`),
+      axios.get(`${backendURI}/weather/${lat}/${long}`),
     ]);
     return response;
   } catch (error) {
@@ -82,7 +87,7 @@ const fetchInfo = async (lat:string, long:string) => {
 };
 
 //Google login
-const fetchGoogle = async (googleUser: GoogleUser, setSuccess:SetString) => {
+const fetchGoogle = async (googleUser: GoogleUser, setSuccess: SetString) => {
   try {
     const response = await axios.get(
       `https://www.googleapis.com/oauth2/v1/userinfo?access_token=${googleUser.access_token}`,
@@ -93,16 +98,40 @@ const fetchGoogle = async (googleUser: GoogleUser, setSuccess:SetString) => {
         },
       }
     );
-    const login = await axios.post("http://localhost:8080/users/google", {
+    const login = await axios.post(`${backendURI}/users/google`, {
       username: response.data.email,
       password: response.data.id,
       name: response.data.name,
     });
     sessionStorage.setItem("token", login.data);
-    setSuccess("Successfully Logged in!")
+    setSuccess("Successfully Logged in!");
     return response.data;
   } catch (error) {
     console.error(error);
+  }
+};
+
+//Login Request
+const handleLogin = async (
+  setSuccess: SetString,
+  e: SubmitEvent,
+  setError: SetString,
+  navigate: NavigateFunction
+) => {
+  e.preventDefault();
+
+  try {
+    const login = await axios.post(`${backendURI}/users/login`, {
+      username: e.currentTarget.email.value,
+      password: e.currentTarget.password.value,
+    });
+    sessionStorage.setItem("token", login.data.token);
+    setSuccess("Successfully logged in!");
+    setTimeout(() => {
+      navigate("/");
+    }, 2000);
+  } catch (error: any) {
+    setError(error.response.data.message);
   }
 };
 
@@ -113,5 +142,6 @@ export {
   fetchInfo,
   fetchGoogle,
   favoriteMountain,
-  removeFavoriteMountain
+  removeFavoriteMountain,
+  handleLogin,
 };
