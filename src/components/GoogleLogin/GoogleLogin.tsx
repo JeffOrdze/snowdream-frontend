@@ -19,7 +19,7 @@ const GoogleLogin: React.FC<Props> =  ({ setSuccess }) => {
 
   const login = useGoogleLogin({
     onSuccess: (codeResponse: any) => setGoogleUser(codeResponse),
-    onError: (error) => console.log("Login Failed:", error),
+    onError: (error) => console.error("Login Failed:", error),
   });
 
   const { data: profile, isSuccess } = useQuery({

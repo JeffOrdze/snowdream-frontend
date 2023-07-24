@@ -7,7 +7,7 @@ const fetchMountainList = async () => {
     const response = await axios.get("http://localhost:8080/avalanche");
     return response.data;
   } catch (error) {
-    console.log(error);
+    console.error(error);
   }
 };
 
@@ -28,7 +28,7 @@ const fetchUser = async (setUser: SetUser) => {
     setUser(response.data);
     return response.data;
   } catch (error) {
-    console.log(error);
+    console.error(error);
   }
 };
 
@@ -40,7 +40,7 @@ const fetchLikedMountains = async (userId: number) => {
     });
     return response.data;
   } catch (error) {
-    console.log(error);
+    console.error(error);
   }
 };
 
@@ -59,7 +59,6 @@ const favoriteMountain = async (mountain_id:number, users_id:number) => {
 //Remove a mountain from a users liked list
 const removeFavoriteMountain = async (mountain_id:number, users_id:number) => { 
   try {
-    console.log(mountain_id, users_id)
     await axios.delete("http://localhost:8080/users/mountains", {
      data:{ mountain_id,
       users_id}
@@ -78,7 +77,7 @@ const fetchInfo = async (lat:string, long:string) => {
     ]);
     return response;
   } catch (error) {
-    console.log(error);
+    console.error(error);
   }
 };
 
@@ -103,7 +102,7 @@ const fetchGoogle = async (googleUser: GoogleUser, setSuccess:SetString) => {
     setSuccess("Successfully Logged in!")
     return response.data;
   } catch (error) {
-    console.log(error);
+    console.error(error);
   }
 };
 

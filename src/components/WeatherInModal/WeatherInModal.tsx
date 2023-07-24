@@ -8,7 +8,6 @@ interface Props {
 const WeatherInModal: React.FC<Props> = ({ weatherData }) => {
   // parse timestamp from weather api to human readable
   const timestamp = require("unix-timestamp");
-console.log(weatherData)
   return (
     <section className="weather body">
       <h2 className="modal__title sub-heading">Weather</h2>
