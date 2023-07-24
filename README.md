@@ -22,6 +22,7 @@ snowDream is a web application that provides curated avalanche conditions and we
 - [html react parser](https://www.npmjs.com/package/html-react-parser): to parse HTML elements coming from Avalanche Canada
 - [bcrypt](https://www.npmjs.com/package/bcryptjs): password hashing
 - [react google oauth](https://www.npmjs.com/package/@react-oauth/google) - oauth integration with Google
+- [leafletJS maps](https://https://leafletjs.com/) - map api to integrate trail head locations
 
 ## Installation
 1. Clone the repository:
