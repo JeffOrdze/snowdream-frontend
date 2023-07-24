@@ -5,7 +5,7 @@ import Input from "../../components/Input/Input";
 import { SubmitEvent } from "../../types/types";
 import "./Signup.scss";
 
-const Signup = () => {
+const Signup: React.FC = () => {
   const navigate = useNavigate();
   const [error, setError] = useState("");
   const [success, setSuccess] = useState(false);

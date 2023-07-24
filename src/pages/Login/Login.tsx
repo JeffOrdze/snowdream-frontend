@@ -6,7 +6,7 @@ import axios from "axios";
 import { useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
 
-function Login() {
+const Login: React.FC= () => {
   
   const [error, setError] = useState("");
   const [success, setSuccess]: [
