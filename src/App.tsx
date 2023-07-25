@@ -9,8 +9,6 @@ import HomePage from "./pages/HomePage/HomePage";
 import Locations from "./pages/Locations/Locations";
 import Login from "./pages/Login/Login";
 import Signup from "./pages/Signup/Signup";
-import "./styles/typography.scss";
-import "./styles/global.scss";
 import "./App.scss";
 
 const queryClient = new QueryClient();
