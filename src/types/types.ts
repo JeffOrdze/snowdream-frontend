@@ -10,6 +10,7 @@ export interface Data {
   lat: string;
   long: string;
   img: string;
+  route: string
 }
 
 export interface UserFavorites { 
@@ -20,6 +21,7 @@ export interface UserFavorites {
   img: string;
   mountain_id: number;
   users_id: number
+  route: string
 }
 
 export interface Confidence { 

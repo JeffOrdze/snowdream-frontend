@@ -11,7 +11,6 @@ const Signup: React.FC = () => {
   
   const [error, setError] = useState("");
   const [success, setSuccess] = useState(false);
-console.log(backendURI)
   const submitHandler = async (e: SubmitEvent) => {
     e.preventDefault();
    

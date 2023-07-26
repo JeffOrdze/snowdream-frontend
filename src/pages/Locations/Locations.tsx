@@ -80,7 +80,7 @@ const Locations: React.FC<Props> = ({
           {filteredData.map((mountain: Data) => (
             <Card
               key={mountain.id}
-              data={mountain}
+              avData={mountain}
               setModalState={setShowModal}
               setMountainInfo={setMountainInfo}
               altStyle={"card--locations"}

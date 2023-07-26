@@ -34,7 +34,7 @@ const DefaultCarousel: React.FC<Props> = ({avData, setShowModal, setMountainInfo
             return (
               <Carousel.Slide key={mountain.id}>
                 <Card
-                  data={mountain}
+                  avData={mountain}
                   setModalState={setShowModal}
                   setMountainInfo={setMountainInfo}
                   userId={userId}

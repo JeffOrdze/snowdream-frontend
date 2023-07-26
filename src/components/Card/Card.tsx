@@ -5,7 +5,7 @@ import { Data, SetDataObject, SetModalState } from "../../types/types";
 import "./Card.scss";
 
 interface Props { 
-  data: Data
+  avData: Data
   setModalState: SetModalState
   setMountainInfo: SetDataObject
   altStyle: string
@@ -14,7 +14,7 @@ interface Props {
 }
 
 const Card: React.FC<Props> = ({
-  data,
+  avData,
   setModalState,
   setMountainInfo,
   altStyle,
@@ -24,7 +24,7 @@ const Card: React.FC<Props> = ({
 
   const queryClient = useQueryClient();
 
-  const { lat, long } = data;
+  const { lat, long } = avData;
 
   const { data: mountainData, isLoading } = useQuery({
     queryKey: ["mountainInfo", lat, long],
@@ -32,7 +32,7 @@ const Card: React.FC<Props> = ({
   });
 
   const likeArea = useMutation({
-    mutationFn: () => favoriteMountain(data.id, userId),
+    mutationFn: () => favoriteMountain(avData.id, userId),
     onSuccess: () => {
       queryClient.invalidateQueries(["userLikes"]);
       queryClient.refetchQueries(["userLikes"]);
@@ -40,7 +40,7 @@ const Card: React.FC<Props> = ({
   });
 
   const unlikeArea = useMutation(
-    () => removeFavoriteMountain(data.id, userId),
+    () => removeFavoriteMountain(avData.id, userId),
     {
       onSuccess: () => {
         queryClient.invalidateQueries(["userLikes"]);
@@ -50,7 +50,7 @@ const Card: React.FC<Props> = ({
   );
 
   const isFavorited =
-    userFavorites && userFavorites.some((item) => item.name === data.name);
+    userFavorites && userFavorites.some((item) => item.name === avData.name);
 
   if (isLoading) {
     return <span className="card">Content Loading..</span>;
@@ -59,7 +59,7 @@ const Card: React.FC<Props> = ({
   return (
     <article className={`card ${altStyle}`}>
       <div className="card__contrast">
-        <h2 className="card__heading">{data.name}</h2>
+        <h2 className="card__heading">{avData.name}</h2>
         <div className="card__icon-container">
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -81,7 +81,7 @@ const Card: React.FC<Props> = ({
         <div className="card__btn-container">
           <button
             className="card__btn button"
-            onClick={() => modalHandler(setModalState, data, setMountainInfo)}
+            onClick={() => modalHandler(setModalState, avData, setMountainInfo)}
           >
             Show me the forecast
           </button>
@@ -101,7 +101,7 @@ const Card: React.FC<Props> = ({
         </div>
       </div>
       <div className="card__background">
-        <img src={data.img} alt="glacier" className="card__img" />
+        <img src={avData.img} alt="glacier" className="card__img" />
       </div>
     </article>
   );

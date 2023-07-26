@@ -19,7 +19,7 @@ const Modal: React.FC<Props> = ({ modalState, setModalState, mountainInfo }) => 
   const [modalTab, setModalTab] = useState(1);
 
   // info from onClick in carousal
-  const { name, lat, long } = mountainInfo;
+  const { name, lat, long, route } = mountainInfo;
 
   //fetch mountain per carousel item
   const { data, isLoading } = useQuery({
@@ -74,7 +74,7 @@ const Modal: React.FC<Props> = ({ modalState, setModalState, mountainInfo }) => 
                     <WeatherInModal weatherData={weatherData} />
                   </>
                 ) : modalTab === 2 ? (
-                  <MapsInModal lat={lat} long={long} />
+                  <MapsInModal lat={lat} long={long} route={route} />
                 ) : null}
 
               </div>
