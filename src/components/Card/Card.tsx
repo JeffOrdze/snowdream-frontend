@@ -1,5 +1,6 @@
 import { useMutation, useQueryClient, useQuery } from "@tanstack/react-query";
 import { modalHandler } from "../../utils/handlers";
+import CardLoader from "../CardLoader/CardLoader";
 import { favoriteMountain, removeFavoriteMountain, fetchInfo } from "../../utils/api";
 import { Data, SetDataObject, SetModalState } from "../../types/types";
 import "./Card.scss";
@@ -53,7 +54,7 @@ const Card: React.FC<Props> = ({
     userFavorites && userFavorites.some((item) => item.name === avData.name);
 
   if (isLoading) {
-    return <span className="card">Content Loading..</span>;
+    return <CardLoader/>;
   }
 
   return (
@@ -80,7 +81,7 @@ const Card: React.FC<Props> = ({
         </div>
         <div className="card__btn-container">
           <button
-            className="card__btn button"
+            className="card__btn card__btn--animate button"
             onClick={() => modalHandler(setModalState, avData, setMountainInfo)}
           >
             Show me the forecast

@@ -16,9 +16,6 @@
     z-index: 2;
     color: white;
     animation: background-out 1s forwards linear;
-    &:hover {
-      animation: background-hover 1s forwards linear;
-    }
   }
   &__heading {
     font-weight: 400;
@@ -39,18 +36,42 @@
     gap: 0.5rem;
   }
   &__btn {
+    position: relative;
+    display: block;
     font-family: Roboto Mono, sans-serif;
     width: 16.25rem;
+    overflow: hidden;
     padding: 0.5rem;
     background-color: whitesmoke;
     box-shadow: $box-shadow;
+    transition: 1s ease-in-out;
+    z-index: 1;
     &--remove {
       background-color: #555555;
       color: white;
       box-shadow: none;
     }
-    &:hover {
-      box-shadow: $box-shadow-hover;
+    &--animate { 
+      &:before { 
+        position: absolute;
+        height: 100%;
+        content: "";
+        top: 0;
+        left: 0;
+        bottom: 0;
+        right: -50px;
+        border-right: 50px solid transparent;
+        border-bottom: 80px solid #555555;
+        transition: 1s ease-in-out;
+        transform: translateX(-100%);
+        z-index: -1;
+      }
+      &:hover {
+        color: white;
+      }
+      &:hover:before{ 
+        transform:translateX(0)
+      }
     }
   }
   &--locations {

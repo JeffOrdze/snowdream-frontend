@@ -72,7 +72,7 @@ const UserCard: React.FC<Props> = ({
         </div>
         <div className="card__btn-container">
           <button
-            className="card__btn button"
+            className="card__btn card__btn--animate button"
             onClick={() => modalHandler(setModalState, data, setMountainInfo)}
           >
             Show me the forecast

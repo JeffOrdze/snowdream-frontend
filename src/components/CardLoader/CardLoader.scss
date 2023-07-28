@@ -1,0 +1,7 @@
+@use "../../styles/mixins.scss" as *;
+
+.cardLoader { 
+    @include flex(center,center);
+    width: 100%;
+    height: 100%;
+}
