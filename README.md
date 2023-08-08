@@ -1,6 +1,9 @@
 # snowDream
 snowDream is a web application that provides curated avalanche conditions and weather data for backcountry skiing. It utilizes the [Avalanche Canada API](https://docs.avalanche.ca/) for avalanche conditions and the [OpenWeather API](https://openweathermap.org/api) for weather data. The project aims to help users make informed decisions about their backcountry skiing adventures by providing up-to-date information about various backcountry areas.
 
+## Demo
+- This site is deployed at https://snowdream.ca
+
 ## Features
 - Avalanche Conditions: Retrieves avalanche conditions from the Avalanche Canada API, allowing users to access the latest data on avalanche risks and safety.
 - Weather Data: Integrates with the OpenWeather API to display real-time weather information for different backcountry locations.
