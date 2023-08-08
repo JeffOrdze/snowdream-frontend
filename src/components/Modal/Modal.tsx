@@ -1,4 +1,9 @@
-import { closeHandler, modalInfoHandler, modalMapHandler } from "../../utils/handlers";
+import {
+  closeHandler,
+  modalInfoHandler,
+  modalMapHandler,
+  modalCheckHandler,
+} from "../../utils/handlers";
 import { useQuery } from "@tanstack/react-query";
 import { useState } from "react";
 import AvalancheInModal from "../AvalancheInModal/AvalancheInModal";
@@ -8,14 +13,19 @@ import exit from "../../assets/images/icons/close-24px.svg";
 import { fetchInfo } from "../../utils/api";
 import { Data, ModalState, SetModalState } from "../../types/types";
 import "./Modal.scss";
+import ComingSoon from "../ComingSoon/ComingSoon";
 
-interface Props { 
-  modalState: ModalState
-  setModalState: SetModalState
-  mountainInfo: Data
+interface Props {
+  modalState: ModalState;
+  setModalState: SetModalState;
+  mountainInfo: Data;
 }
 
-const Modal: React.FC<Props> = ({ modalState, setModalState, mountainInfo }) => {
+const Modal: React.FC<Props> = ({
+  modalState,
+  setModalState,
+  mountainInfo,
+}) => {
   const [modalTab, setModalTab] = useState(1);
 
   // info from onClick in carousal
@@ -51,13 +61,22 @@ const Modal: React.FC<Props> = ({ modalState, setModalState, mountainInfo }) => 
                 </div>
 
                 <div className="modal__button-container">
-                  <button className="modal__button button card__btn" onClick={() => modalInfoHandler(setModalTab)}>
+                  <button
+                    className={`modal__button button ${modalTab === 1 ? "modal__button--current" : ""}`}
+                    onClick={() => modalInfoHandler(setModalTab)}
+                  >
                     Mountain Info
                   </button>
-                  <button className="modal__button button card__btn" onClick={() => modalMapHandler(setModalTab)}>
+                  <button
+                    className={`modal__button button ${modalTab === 2 ? "modal__button--current" : ""}`}
+                    onClick={() => modalMapHandler(setModalTab)}
+                  >
                     Map
                   </button>
-                  <button className="modal__button button card__btn">
+                  <button
+                    className={`modal__button button ${modalTab === 3 ? "modal__button--current" : ""}`}
+                    onClick={() => modalCheckHandler(setModalTab)}
+                  >
                     Check List
                   </button>
                 </div>
@@ -75,8 +94,9 @@ const Modal: React.FC<Props> = ({ modalState, setModalState, mountainInfo }) => 
                   </>
                 ) : modalTab === 2 ? (
                   <MapsInModal lat={lat} long={long} route={route} />
+                ) : modalTab === 3 ? (
+                  <ComingSoon />
                 ) : null}
-
               </div>
             </article>
           </div>
@@ -84,7 +104,7 @@ const Modal: React.FC<Props> = ({ modalState, setModalState, mountainInfo }) => 
       </>
     );
   }
-  return null
+  return null;
 };
 
 export default Modal;

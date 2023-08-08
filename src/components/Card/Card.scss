@@ -46,6 +46,7 @@
     box-shadow: $box-shadow;
     transition: 1s ease-in-out;
     z-index: 1;
+    cursor: pointer;
     &--remove {
       background-color: #555555;
       color: white;

@@ -1,4 +1,5 @@
 @use "../../styles/mixins.scss" as *;
+@use "../../styles/variables.scss" as *;
 
 .overlay {
   position: fixed;
@@ -42,16 +43,42 @@
     top: 10%;
     padding: 1rem 3rem;
   }
+
   &__button-container { 
     @include flex(center,center);
     gap: 1rem;
     margin-bottom: 1rem;
   }
+
+  &__button {
+    display: block;
+    font-family: Roboto Mono, sans-serif;
+    width: 16.25rem;
+    overflow: hidden;
+    padding: 0.5rem;
+    background-color: whitesmoke;
+    box-shadow: $box-shadow;
+    transition: 0.5s ease-in-out;
+    cursor: pointer; 
+
+    &--current { 
+      background-color: #555555;
+      color: whitesmoke;
+      border: 2px solid black;
+      box-shadow: none
+    }
+  }
+  
   &__container {
     @include flex(normal, normal, column);
   }
+
   &__exit-container {
     @include flex(flex-end);
+
+    @include tablet { 
+      margin-bottom: 1rem;
+    }
   }
   &__text {
     @include tablet {

@@ -26,9 +26,13 @@ const modalMapHandler = (setModalTab: SetModalTab) => {
   setModalTab(2)
 }
 
+const modalCheckHandler = (setModalTab: SetModalTab) => { 
+  setModalTab(3)
+}
+
 const searchHandler = (e: InputEvent, setSearchValue: SetString) => {
   const lowerCase = e.target.value.toLowerCase();
   setSearchValue(lowerCase);
 };
 
-export { modalHandler, closeHandler, logOutHandler, modalInfoHandler, modalMapHandler, searchHandler };
+export { modalHandler, closeHandler, logOutHandler, modalInfoHandler, modalMapHandler, modalCheckHandler, searchHandler };
