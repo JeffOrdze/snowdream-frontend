@@ -6,8 +6,10 @@ const modalHandler = (setModalState: SetModalState, data: Data, setMountainInfo:
   setMountainInfo(data);
 };
 
-const closeHandler = (setModalState: SetModalState) => {
+const closeHandler = (setModalState: SetModalState, setModalTab: SetModalTab) => {
   setModalState(false);
+  setModalTab(1)
+
 };
 
 const logOutHandler = (setUser: SetUser): void => {

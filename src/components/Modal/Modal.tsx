@@ -46,7 +46,7 @@ const Modal: React.FC<Props> = ({ modalState, setModalState, mountainInfo }) => 
                     className="exit"
                     src={exit}
                     alt="exit icon"
-                    onClick={() => closeHandler(setModalState)}
+                    onClick={() => closeHandler(setModalState, setModalTab)}
                   />
                 </div>
 
