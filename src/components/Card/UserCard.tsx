@@ -41,6 +41,19 @@ const UserCard: React.FC<Props> = ({
     }
   );
 
+const buttonMapping = {
+  favourited: (
+    <button className="card__btn card__btn--remove button" onClick={() => unlikeArea.mutate()}>
+    Remove Favorite
+    </button>
+  ),
+  notLoggedIn: ( 
+    <button disabled className="card__btn button">
+      Please login
+     </button>
+  )
+}
+
   const isFavorited =
     userFavorites && userFavorites.some((item) => item.name === data.name);
 
@@ -77,16 +90,11 @@ const UserCard: React.FC<Props> = ({
           >
             Show me the forecast
           </button>
-          {isFavorited ? (
-            <button className="card__btn card__btn--remove button" onClick={() => unlikeArea.mutate()}>
-              Remove Favorite
-            </button>
-          ) : !userId ? (
-            <button disabled className="card__btn button">
-              Please login
-            </button>
-          ) 
-           : null}
+          {isFavorited  
+          ? buttonMapping.favourited
+          : !userId 
+          ? buttonMapping.notLoggedIn  
+          : null}
         </div>
       </div>
       <div className="card__background">
